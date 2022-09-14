@@ -32,40 +32,40 @@ FILE* sfptr = nullptr;
 
 
 
-const int MAX_TITLE_LENGTH = 50;
-const int MAX_QUANTITY_VALUE = 50;
-struct ShoppingRec {
+const int MAX_TITLE_LENGTH = 50; //ShoppingRec.cpp
+const int MAX_QUANTITY_VALUE = 50; //ShoppingRec.cpp
+/*struct ShoppingRec {
    char m_title[MAX_TITLE_LENGTH + 1];
    int m_quantity;
    bool m_bought;
-};
+};*/ //ShoppingRec.cpp
 
-const int MAX_NO_OF_RECS = 15;
-ShoppingRec recs[MAX_NO_OF_RECS] = {};
-int noOfRecs = 0;
+const int MAX_NO_OF_RECS = 15; //ShoppingList.cpp
+ShoppingRec recs[MAX_NO_OF_RECS] = {}; //ShoppingRec.h
+int noOfRecs = 0; //ShoppingList.cpp
 
 
-ShoppingRec getShoppingRec();
-void displayShoppingRec(const ShoppingRec* shp);
-void toggleBoughtFlag(ShoppingRec* rec);
-bool isShoppingRecEmpty(const ShoppingRec* shp);
+ShoppingRec getShoppingRec(); //ShoppingRec.h
+void displayShoppingRec(const ShoppingRec* shp); //ShoppingRec.h
+void toggleBoughtFlag(ShoppingRec* rec); //ShoppingRec.h
+bool isShoppingRecEmpty(const ShoppingRec* shp); //ShoppingRec.h
 
-bool openFileForRead();
-bool openFileForOverwrite();
-void closeFile();
-bool freadShoppingRec(ShoppingRec* rec);
-void fwriteShoppintRec(const ShoppingRec* rec);
+bool openFileForRead(); //File.h
+bool openFileForOverwrite(); //File.h
+void closeFile(); //File.h
+bool freadShoppingRec(ShoppingRec* rec); //File.h
+void fwriteShoppintRec(const ShoppingRec* rec); //File.h
 
-bool loadList();
-void displayList();
-void removeBoughtItems();
-void removeItem(int index);
-bool saveList();
-void clearList();
-void toggleBought();
-void addItemToList();
-void removeItemfromList();
-bool listIsEmpty();
+bool loadList(); //ShoppingList.h
+void displayList(); //ShoppingList.h
+void removeBoughtItems(); //ShoppingList.h
+void removeItem(int index); //ShoppingList.h
+bool saveList(); //ShoppingList.h
+void clearList(); //ShoppingList.h
+void toggleBought(); //ShoppingList.h
+void addItemToList(); //ShoppingList.h
+void removeItemfromList(); //ShoppingList.h
+bool listIsEmpty(); //ShoppingList.h
 
 int listMenu();
 

@@ -5,5 +5,6 @@
 #include "ShoppingList.h"
 using namespace std;
 namespace sdds {
-
+	int noOfRecs = 0;
+	const int MAX_NO_OF_RECS = 15;
 }

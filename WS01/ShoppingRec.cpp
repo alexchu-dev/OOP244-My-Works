@@ -6,6 +6,10 @@
 using namespace std;
 namespace sdds
 {
+	const int MAX_TITLE_LENGTH = 50;
+	const int MAX_QUANTITY_VALUE = 50;
+	const int MAX_NO_OF_RECS = 15;
+
 	ShoppingRec getShoppingRec() {
 		ShoppingRec R = {};
 		cout << "Item name: ";
