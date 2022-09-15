@@ -132,7 +132,6 @@
     <ClCompile Include="shoppingListApp.cpp" />
     <ClCompile Include="ShoppingRec.cpp" />
     <ClCompile Include="Utils.cpp" />
-    <ClCompile Include="w1p1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="File.h" />

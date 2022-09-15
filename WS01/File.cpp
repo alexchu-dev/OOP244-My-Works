@@ -5,6 +5,7 @@
 #include "File.h"
 using namespace std;
 namespace sdds {
+   FILE* sfptr = nullptr;
    bool openFileForRead() {
       sfptr = fopen(SHOPPING_DATA_FILE, "r");
       return sfptr != NULL;
