@@ -20,25 +20,25 @@ using namespace std;
 
 
 
-void flushkeys();
-bool ValidYesResponse(char ch);
-bool yes();
-void readCstr(char cstr[], int len);
-int readInt(int min, int max);
+void flushkeys(); //Utils.h
+bool ValidYesResponse(char ch); //Utils.h
+bool yes(); //Utils.h
+void readCstr(char cstr[], int len); //Utils.h
+int readInt(int min, int max); //Utils.h
 
 
-const char* const SHOPPING_DATA_FILE = "shoppinglist.csv";
-FILE* sfptr = nullptr;
+const char* const SHOPPING_DATA_FILE = "shoppinglist.csv"; //File.h
+FILE* sfptr = nullptr; //File.h
 
 
 
 const int MAX_TITLE_LENGTH = 50; //ShoppingRec.cpp
 const int MAX_QUANTITY_VALUE = 50; //ShoppingRec.cpp
-/*struct ShoppingRec {
+struct ShoppingRec { //ShoppingRec.cpp
    char m_title[MAX_TITLE_LENGTH + 1];
    int m_quantity;
    bool m_bought;
-};*/ //ShoppingRec.cpp
+}; 
 
 const int MAX_NO_OF_RECS = 15; //ShoppingList.cpp
 ShoppingRec recs[MAX_NO_OF_RECS] = {}; //ShoppingRec.h
@@ -67,9 +67,9 @@ void addItemToList(); //ShoppingList.h
 void removeItemfromList(); //ShoppingList.h
 bool listIsEmpty(); //ShoppingList.h
 
-int listMenu();
+int listMenu(); //shoppingListApp.cpp
 
-int main() {
+int main() {  //shoppingListApp.cpp
    bool done = false;
    loadList();
    while (!done) {
