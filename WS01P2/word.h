@@ -7,7 +7,7 @@ namespace sdds {
    struct Word {
       char m_word[MAX_WORD_LENGTH+1];
       char m_type[MAX_WORD_LENGTH+1];
-      char m_definition[MAX_WORD_DEF][MAX_DEF_LENGTH+1];
+      char m_definition[MAX_DEF_LENGTH+1];
    };
 }
 #endif
