@@ -3,8 +3,8 @@
 #include "word.h"
 namespace sdds {
    struct Dictionary {
-      int wordQty = 0;
-      Word words[100];
+      int m_wordCount;
+      Word m_words[100];
    };
 
    int LoadDictionary(const char* filename);
@@ -12,8 +12,7 @@ namespace sdds {
    void DisplayWord(const char* word);
    void AddWord(const char* word, const char* type, const char* definition);
    int UpdateDefinition(const char* word, const char* type, const char* definition);
-   const int MAX_WORD_FILE = 100;
-   
+   const int MAX_WORDS = 100;
 
 
 

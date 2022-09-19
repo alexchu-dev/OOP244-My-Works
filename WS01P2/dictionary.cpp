@@ -3,21 +3,27 @@
 #include <fstream>
 #include <string>
 #include "dictionary.h"
+
 using namespace std;
 namespace sdds {
    FILE* fptr = nullptr;
-   struct Word word[MAX_WORD_FILE];
+   struct Dictionary dict;
+   
+// Functions for reading files
+   
+
+   
+
    int LoadDictionary(const char* filename){
       fptr = fopen(filename, "r+");
       int flag, i;
       if (fptr != NULL) {
-         for (i = 0; i < MAX_WORD_FILE;i++){
-            fscanf(fptr, "%s",word[i].m_word);
-            do {
-            fscanf(fptr, "\t%[^:]: %[^\n]", word[i].m_type, word[i].
-                   m_definition);
-            } while (fscanf(fptr, "%s") != '\t');
-            cout << word[i].m_word << endl;
+         for (i = 0; i <MAX_WORDS;i++){
+            fscanf(fptr, "%[^\n]\n",dict.m_words[i].m_word);
+            fscanf(fptr, "\t%[^:]: %[^\n]\n", dict.m_words[i].defs->m_type, dict.m_words[i].defs->m_definition);
+            cout << i << dict.m_words[i].m_word << endl;
+            cout << i << dict.m_words[i].defs->m_type << endl;
+            cout << i << dict.m_words[i].defs->m_definition << endl;
             
          }
          
@@ -82,7 +88,7 @@ fine
 
 
    readDef:
-      skip a tab, read upto ':', skip a column and aspace, read the definition up to '\n', skip the '\n'
+      skip a tab, read upto ':', skip a colon and a space, read the definition up to '\n', skip the '\n'
       fscanf(...,"\t%[^:]: %[\n]\n",...) == 2;
 
    read a word:
