@@ -14,7 +14,8 @@ namespace sdds {
          for (i = 0; i < MAX_WORD_FILE;i++){
             fscanf(fptr, "%s",word[i].m_word);
             do {
-            fscanf(fptr, "\t%[^:]: %[^\n]", word[i].m_type, word[i].m_definition);
+            fscanf(fptr, "\t%[^:]: %[^\n]", word[i].m_type, word[i].
+                   m_definition);
             } while (fscanf(fptr, "%s") != '\t');
             cout << word[i].m_word << endl;
             
@@ -59,3 +60,37 @@ namespace sdds {
    }
   
 }
+
+/*
+fine
+   adjective: of high quality.
+   adjective: (of a thread, filament, or person's hair) thin.
+   noun: very small particles found in mining, milling, etc.
+   adverb: in a satisfactory or pleasing manner; very well.
+
+fine
+   adjective: of high quality.
+   adjective: (of a thread, filament, or person's hair) thin.
+   noun: very small particles found in mining, milling, etc.
+   adverb: in a satisfactory or pleasing manner; very well.
+
+fine
+   adjective: of high quality.
+   adjective: (of a thread, filament, or person's hair) thin.
+   noun: very small particles found in mining, milling, etc.
+   adverb: in a satisfactory or pleasing manner; very well.
+
+
+   readDef:
+      skip a tab, read upto ':', skip a column and aspace, read the definition up to '\n', skip the '\n'
+      fscanf(...,"\t%[^:]: %[\n]\n",...) == 2;
+
+   read a word:
+      read a the word up to '\n', skip '\n.
+      while readDef has not failed and less than 8, keep going
+
+   read the dictionary
+      while readword has not failed and less than 100, keep going
+
+
+*/
