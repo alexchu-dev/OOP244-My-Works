@@ -1,6 +1,5 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
-#include <fstream>
 #include <string>
 #include "dictionary.h"
 
@@ -9,16 +8,19 @@ namespace sdds {
    FILE* fptr = nullptr;
    struct Dictionary dict;
    
-// Functions for reading files
-   
+   // Functions for reading files
+   /*   readTypeDef:
+      skip a tab, read upto ':', skip a colon and a space, read the definition up to '\n', skip the '\n'
+      fscanf(...,"\t%[^:]: %[\n]\n",...) == 2;
 
-   
+   read a word:
+      read a the word up to '\n', skip '\n.
+      while readTypeDef has not failed and less than 8, keep going
 
-   int LoadDictionary(const char* filename){
-      fptr = fopen(filename, "r+");
-      int flag, i;
-      if (fptr != NULL) {
-         for (i = 0; i <MAX_WORDS;i++){
+   read the dictionary
+      while readword has not failed and less than 100, keep going
+      
+         for (i = 0; i <MAX_WORDS; i++) {
             fscanf(fptr, "%[^\n]\n",dict.m_words[i].m_word);
             fscanf(fptr, "\t%[^:]: %[^\n]\n", dict.m_words[i].defs->m_type, dict.m_words[i].defs->m_definition);
             cout << i << dict.m_words[i].m_word << endl;
@@ -26,7 +28,53 @@ namespace sdds {
             cout << i << dict.m_words[i].defs->m_definition << endl;
             
          }
-         
+      
+      */
+   int readTypeDef(const char* word, int wordIndex, int defIndex) {
+      int flag;
+      flag = fscanf(fptr, "\t%[^:]: %[^\n]\n", dict.m_words[wordIndex].defs[defIndex].m_type, dict.m_words[wordIndex].defs[defIndex].m_definition);
+      return flag;
+   }
+   int readWord(const char* word, int wordIndex) {
+      int flag;
+      int defIndex = 0;
+      dict.m_words[wordIndex].m_tdCount = 0;
+      flag = fscanf(fptr, "\n%[^\n]\n", dict.m_words[wordIndex].m_word);
+      while (readTypeDef(word, wordIndex, defIndex) == 2 && dict.m_words[wordIndex].m_tdCount < MAX_DEF) {
+         defIndex++;
+         dict.m_words[wordIndex].m_tdCount++;
+      }
+      return flag;
+   }
+   int readDict(const char* word) {
+      int flag;
+      int wordIndex;
+      for (wordIndex = 0; wordIndex < MAX_WORDS; wordIndex++) {
+         flag = readWord(word, wordIndex);
+         if (flag == 1) {
+            dict.m_wordCount++;
+         }
+      }
+      return 0;
+   }
+
+   int LoadDictionary(const char* filename){
+      fptr = fopen(filename, "r+");
+      int flag, i;
+      if (fptr != NULL) {
+         flag = readDict(filename);
+         cout << 0 << dict.m_words[0].m_word << endl;
+         cout << 0 << dict.m_words[0].defs[0].m_type << endl;
+         cout << 0 << dict.m_words[0].defs[0].m_definition << endl;
+
+         /*for (i = 0; i < MAX_WORDS; i++) {
+            fscanf(fptr, "%[^\n]\n", dict.m_words[i].m_word);
+            fscanf(fptr, "\t%[^:]: %[^\n]\n", dict.m_words[i].defs->m_type, dict.m_words[i].defs->m_definition);
+            cout << i << dict.m_words[i].m_word << endl;
+            cout << i << dict.m_words[i].defs->m_type << endl;
+            cout << i << dict.m_words[i].defs->m_definition << endl;
+
+         }*/
          flag = 0;
          fclose(fptr);
       }
@@ -87,7 +135,7 @@ fine
    adverb: in a satisfactory or pleasing manner; very well.
 
 
-   readDef:
+   readTypeDef:
       skip a tab, read upto ':', skip a colon and a space, read the definition up to '\n', skip the '\n'
       fscanf(...,"\t%[^:]: %[\n]\n",...) == 2;
 

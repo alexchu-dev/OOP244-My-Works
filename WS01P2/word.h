@@ -1,14 +1,15 @@
 #ifndef SDDS_WORD_H
 #define SDDS_WORD_H
+#define MAX_DEF 8
 namespace sdds {
-   struct Definition {
+   struct TypeDef {
       char m_type[64];
       char m_definition[1024];
    };
    struct Word {
       char m_word[64];
       int m_tdCount;
-      Definition defs[8];
+      TypeDef defs[MAX_DEF];
    };
 
 }
