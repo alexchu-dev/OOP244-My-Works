@@ -8,8 +8,8 @@ namespace sdds {
    FILE* fptr = nullptr;
    struct Dictionary dict;
    
-   // Functions for reading files
-   /*   readTypeDef:
+   /* Pseudocodes by Fardad
+   readTypeDef:
       skip a tab, read upto ':', skip a colon and a space, read the definition up to '\n', skip the '\n'
       fscanf(...,"\t%[^:]: %[\n]\n",...) == 2;
 
@@ -20,16 +20,14 @@ namespace sdds {
    read the dictionary
       while readword has not failed and less than 100, keep going
       
-         for (i = 0; i <MAX_WORDS; i++) {
-            fscanf(fptr, "%[^\n]\n",dict.m_words[i].m_word);
-            fscanf(fptr, "\t%[^:]: %[^\n]\n", dict.m_words[i].defs->m_type, dict.m_words[i].defs->m_definition);
-            cout << i << dict.m_words[i].m_word << endl;
-            cout << i << dict.m_words[i].defs->m_type << endl;
-            cout << i << dict.m_words[i].defs->m_definition << endl;
-            
-         }
-      
-      */
+    
+    My original lines before spliting into functions
+            for (i = 0; i < MAX_WORDS; i++) {
+            fscanf(fptr, "%[^\n]\n", dict.m_words[i].m_word);
+            for (j = 0; j < MAX_DEF; j++)
+               fscanf(fptr, "\t%[^:]: %[^\n]\n", dict.m_words[i].defs[j].m_type, dict.m_words[i].defs[j].m_definition);
+            }       
+    */
    int readTypeDef(const char* word, int wordIndex, int defIndex) {
       int flag;
       flag = fscanf(fptr, "\t%[^:]: %[^\n]\n", dict.m_words[wordIndex].defs[defIndex].m_type, dict.m_words[wordIndex].defs[defIndex].m_definition);
@@ -63,18 +61,18 @@ namespace sdds {
       int flag, i;
       if (fptr != NULL) {
          flag = readDict(filename);
-         cout << 0 << dict.m_words[0].m_word << endl;
-         cout << 0 << dict.m_words[0].defs[0].m_type << endl;
-         cout << 0 << dict.m_words[0].defs[0].m_definition << endl;
-
-         /*for (i = 0; i < MAX_WORDS; i++) {
-            fscanf(fptr, "%[^\n]\n", dict.m_words[i].m_word);
-            fscanf(fptr, "\t%[^:]: %[^\n]\n", dict.m_words[i].defs->m_type, dict.m_words[i].defs->m_definition);
-            cout << i << dict.m_words[i].m_word << endl;
-            cout << i << dict.m_words[i].defs->m_type << endl;
-            cout << i << dict.m_words[i].defs->m_definition << endl;
-
-         }*/
+         //Testing Output, failed to output properly which means my input logic has sth wrong?
+         cout << "Testing Output of Word 0" << endl;
+         cout << "Word 0:\t" << dict.m_words[0].m_word << endl;
+         cout << "Def 0:\t" << dict.m_words[0].defs[0].m_type << endl;
+         cout << "Type 0:\t" << dict.m_words[0].defs[0].m_definition << "\n" << endl;
+         cout << "Testing Output of Word 1" << endl;
+         cout << "Word 1:\t" << dict.m_words[1].m_word << endl;
+         cout << "Def 0:\t" << dict.m_words[1].defs[0].m_type << endl;
+         cout << "Type 0:\t" << dict.m_words[1].defs[0].m_definition << endl;
+         
+         
+         
          flag = 0;
          fclose(fptr);
       }
