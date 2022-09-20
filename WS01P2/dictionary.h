@@ -9,7 +9,7 @@ namespace sdds {
    };
    int readTypeDef(const char* word, int wordIndex, int defIndex);
    int readWord(const char* word, int wordIndex);
-   //int readDict(const char* word);
+   int readDict(const char* word);
    int LoadDictionary(const char* filename);
    void SaveDictionary(const char* filename);
    void DisplayWord(const char* word);
