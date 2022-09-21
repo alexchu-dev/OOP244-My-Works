@@ -1,0 +1,52 @@
+/******************************************************************************
+                    OOP244NAA - WS01 DIY Review @ Sep 21 2022
+Full Name  : Alex Chu
+Student ID#: 153954219
+Email      : kchu30@myseneca.ca
+
+Citation:
+My teacher has offered assistance in the LoadDictionary, readTypeDef, readWord, readDict etc to help me proceed further with my work.
+Otherwise, I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+******************************************************************************/
+
+The scope of this workshop is generally a review of different topics that we have learnt in IPC144, and we need to utilize them in this workshop. I have forgotten quite much of them so this is a great opportunity to brush up and catch up.
+
+The most difficult part I have faced is the LoadDictionary part. I tried to use both fscanf, sscanf, fgetc but I am not familiar with fgetc so I gave a try with fstream. Although fstream is not being taught yet, it seems easier and faster which is quite interesting.
+
+I spent more than 4 days on the LoadDictionary with no luck, I investigate with my pal Kenneth (the way we do is never sharing answers but trying to debug for each other or at most give a hint of what logic flow can be used). He used sscanf and fgetc, and I asked for help from Fardad and followed his way of spliting in little functions to solve the big problem.
+
+The main bug I faced was the data scanned not being properly assigned to the struct. A lot of lines were skipped, only the first one was correct.
+My original code is like this, with a wrong parameter getting a const char* word. The fscanf line could only work on the first entry unfortunately.
+int readTypeDef(const char* word, int wordIndex, int defIndex) {
+      int flag;
+      flag = fscanf(fptr, "\t%[^:]: %[^\n]\n", dict.m_words[wordIndex].defs[defIndex].m_type, dict.m_words[wordIndex].defs[defIndex].m_definition);
+      return flag;
+   }
+int readWord(const char* word, int wordIndex) {
+      int flag;
+      int defIndex = 0;
+      dict.m_words[wordIndex].m_tdCount = 0;
+      flag = fscanf(fptr, "\n%[^\n]\n", dict.m_words[wordIndex].m_word);
+      while (readTypeDef(word, wordIndex, defIndex) == 2 && dict.m_words[wordIndex].m_tdCount < MAX_DEF) {
+         defIndex++;
+         dict.m_words[wordIndex].m_tdCount++;
+      }
+      return flag;
+}
+
+After receiving help from Fardad, many of the functions changed to bool type, and he changed my code to fgetc for receiving the '\t' and it worked like a charm.
+bool readTypeDef( int wordIndex, int tdIndex) {
+      char ch = fgetc(fptr);
+      bool ret = false;
+      if(ch == '\t') {
+         ret = fscanf(fptr, "%[^:]: %[^\n]",
+                dict.m_words[wordIndex].defs[tdIndex].m_type,
+                dict.m_words[wordIndex].defs[tdIndex].m_definition) == 2 && fgetc(fptr) == '\n'; //returns 2 if successful
+      }
+      return ret;
+   }
+   
+The rest of the part is totally fine for me, including searching records with index, display and add words etc are very straight forward.
+I will investigate and study in depth of why and how Fardad change the code, and will share with my classmates.
+
+Thank you.
