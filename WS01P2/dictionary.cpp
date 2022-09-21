@@ -29,46 +29,42 @@ namespace sdds {
          }
       
       */
-   int readTypeDef(const char* word, int wordIndex, int tdIndex) {
-      int flag;
-      flag = fscanf(fptr, "\t%[^:]: %[^\n]\n", dict.m_words[wordIndex].defs[tdIndex].m_type, dict.m_words[wordIndex].defs[tdIndex].m_definition); //returns 2 if successful
-      return flag;
-   }
-   int readWord(const char* word, int wordIndex) {
-      dict.m_words[wordIndex].m_tdCount = 0;
-      int flag;
-      int tdIndex = 0;
-      flag = fscanf(fptr, "%[^\n]\n", dict.m_words[wordIndex].m_word); // returns 1 if successful
-      do {
-         readTypeDef(word, wordIndex, tdIndex);
-         tdIndex++;
-         dict.m_words[wordIndex].m_tdCount++;
-      } while (readTypeDef(word, wordIndex, tdIndex) == 2 && tdIndex < MAX_DEF);
-         
-      return flag;
-   }
-   int readDict(const char* word) {
-      dict.m_wordCount = 0;
-      int flag;  //initially this flag is meant to receive one and return, but LoadDictionary needs a 0 to work.
-      int wordIndex;
-      for (wordIndex = 0; wordIndex < MAX_WORDS; wordIndex++) {
-         flag = readWord(word, wordIndex);
-         if (flag == 1) {
-            dict.m_wordCount++;
-         }
+   bool readTypeDef( int wordIndex, int tdIndex) {
+      char ch = fgetc(fptr);
+      bool ret = false;
+      if(ch == '\t') {
+         ret = fscanf(fptr, "%[^:]: %[^\n]",
+                dict.m_words[wordIndex].defs[tdIndex].m_type,
+                dict.m_words[wordIndex].defs[tdIndex].m_definition) == 2 && fgetc(fptr) == '\n'; //returns 2 if successful
       }
-      return 0;
+      return ret;
+   }
+   bool readWord( int wordIndex) {
+      int& tdIndex = dict.m_words[wordIndex].m_tdCount;
+      tdIndex = 0;
+      bool flag = fscanf(fptr, "%[^\n]", dict.m_words[wordIndex].m_word) == 1 && fgetc(fptr) == '\n'; // returns 1 if successful
+      while (flag && readTypeDef( wordIndex, tdIndex) && tdIndex < MAX_DEF) 
+         tdIndex++;
+      return flag && tdIndex > 0;
+   }
+
+
+
+   bool readDict() {
+      int& wordIndex = dict.m_wordCount = 0;
+      for(wordIndex = 0; readWord( wordIndex) && wordIndex < MAX_WORDS; wordIndex++);
+      return wordIndex > 0;
    }
 
    int LoadDictionary(const char* filename) {
       fptr = fopen(filename, "r+");
-      int flag;
-      if (fptr != NULL) {
-         flag = readDict(filename);  //readDict would return 0 no matter what in this case
-         
+      bool flag{};
+      if(fptr != NULL) {
+         flag = readDict();  //readDict would return 0 no matter what in this case
+
          //Testing Output, failed to output properly which means my input logic has sth wrong?
          cout << "wordCount is " << dict.m_wordCount << endl;
-         for (int i=0; i < dict.m_wordCount;i++)
+         for(int i = 0; i < dict.m_wordCount; i++)
             cout << "word " << i << " is " << dict.m_words[i].m_word << endl;
          cout << "Testing Output of Word 0" << endl;
          cout << "Word 0:\t" << dict.m_words[0].m_word << endl;
@@ -82,7 +78,7 @@ namespace sdds {
          cout << "Word 1:\t" << dict.m_words[1].m_word << endl;
          cout << "Def 1:\t" << dict.m_words[1].defs[1].m_type << endl;
          cout << "Type 1:\t" << dict.m_words[1].defs[1].m_definition << endl;
-         
+
          /*for (int i = 0; i < dict.m_wordCount; i++) {
             cout << "Testing Output of Word " << i << endl;
             cout << "Word " << i << ":\t" << dict.m_words[i].m_word << endl;
@@ -96,15 +92,9 @@ namespace sdds {
                cout << "Type 0:\t" << dict.m_words[1].defs[0].m_definition << endl;
             }
          }*/
-         
-         flag = 0;
          fclose(fptr);
       }
-      else
-      {
-         flag = 1;
-      }
-      return flag;  
+      return !flag;  // zero for success
    }
    void SaveDictionary(const char* filename) {
 

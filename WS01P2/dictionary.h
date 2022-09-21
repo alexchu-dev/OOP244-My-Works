@@ -7,9 +7,9 @@ namespace sdds {
       int m_wordCount;
       Word m_words[MAX_WORDS];
    };
-   int readTypeDef(const char* word, int wordIndex, int defIndex);
-   int readWord(const char* word, int wordIndex);
-   int readDict(const char* word);
+   bool readTypeDef( int wordIndex, int defIndex);
+   bool readWord( int wordIndex);
+   bool readDict();
    int LoadDictionary(const char* filename);
    void SaveDictionary(const char* filename);
    void DisplayWord(const char* word);
