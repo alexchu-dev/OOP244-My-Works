@@ -68,13 +68,13 @@ namespace sdds {
          myfile <<endl;
       }
       myfile.close();
-      memset(&dict, 0, sizeof(dict)); //Memory Reset!!
+      std::memset(&dict, 0, sizeof(dict)); //Memory Reset!!
    }
    int SearchFor(const char* word) {
       int index = -1;
       for (int i = 0; i < dict.m_wordCount; i++)
       {
-         if (strcmp(word, dict.m_words[i].m_word) == 0) {
+         if (std::strcmp(word, dict.m_words[i].m_word) == 0) {
             index = i;
          }
       }
@@ -100,16 +100,16 @@ namespace sdds {
       int index = SearchFor(word);
       if (index >= 0) {
          int tdIndex = dict.m_words[index].m_tdCount;
-         strcpy(dict.m_words[index].defs[tdIndex].m_type, type);
-         strcpy(dict.m_words[index].defs[tdIndex].m_definition, definition);
+         std::strcpy(dict.m_words[index].defs[tdIndex].m_type, type);
+         std::strcpy(dict.m_words[index].defs[tdIndex].m_definition, definition);
          dict.m_words[index].m_tdCount++;
       }
       else {
          index = dict.m_wordCount;
-         strcpy(dict.m_words[index].m_word, word);
+         std::strcpy(dict.m_words[index].m_word, word);
          int tdIndex = dict.m_words[index].m_tdCount;
-         strcpy(dict.m_words[index].defs[tdIndex].m_type, type);
-         strcpy(dict.m_words[index].defs[tdIndex].m_definition, definition);
+         std::strcpy(dict.m_words[index].defs[tdIndex].m_type, type);
+         std::strcpy(dict.m_words[index].defs[tdIndex].m_definition, definition);
          dict.m_wordCount++;
          dict.m_words[index].m_tdCount++;
       }
@@ -128,8 +128,8 @@ namespace sdds {
             cout << "Which one to update? ";
             cin >> tdIndex;
             tdIndex--;
-            strcpy(dict.m_words[index].defs[tdIndex].m_type, type);
-            strcpy(dict.m_words[index].defs[tdIndex].m_definition, definition);
+            std::strcpy(dict.m_words[index].defs[tdIndex].m_type, type);
+            std::strcpy(dict.m_words[index].defs[tdIndex].m_definition, definition);
          }
       }
     return 0;
