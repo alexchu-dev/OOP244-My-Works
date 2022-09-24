@@ -1,0 +1,1 @@
+write in filebool read(double& value, FILE* fptr) test failed
