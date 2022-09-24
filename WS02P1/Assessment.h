@@ -8,8 +8,9 @@ Email      : kchu30@myseneca.ca
 I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assdignments.
 *****************************************************************************
 */
-#ifndef SDDS_ASSESSMENT_H
-#define SDDS_ASSESSMENT_H
+#ifndef SDDS_ASSESSMENT_H_
+#define SDDS_ASSESSMENT_H_
+#include <cstdio>
 namespace sdds {
    struct Assessment {
       double* m_mark;
@@ -22,4 +23,4 @@ namespace sdds {
    void freeMem(Assessment*& aptr, int size);
    int read(Assessment*& aptr, FILE* fptr);
 }
-#endif
+#endif //!SDDS_ASSESSMENT_H_
