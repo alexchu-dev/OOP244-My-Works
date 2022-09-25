@@ -10,7 +10,7 @@
 // Revision History
 // -----------------------------------------------------------
 // Name            Date            Reason
-//
+// Alex Chu        2022/09/25      Implement neccessary functions
 /////////////////////////////////////////////////////////////////
 ***********************************************************************/
 #ifndef SDDS_FILE_H_
@@ -23,7 +23,9 @@ namespace sdds {
    // Finds the records kept in the file to be used for the dynamic memory allocation 
    // of the records in the file
    int noOfRecords();
+   // Reads postal code from the stream, skips the comma and return true if successful
    bool read(char postalCode[]);
+   // Reads population from the stream, skips the newline and return true if successful
    bool read(int& population);
    //char* readLine(char* postalCode, int* population);
 }

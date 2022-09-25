@@ -10,7 +10,7 @@
 // Revision History
 // -----------------------------------------------------------
 // Name            Date            Reason
-//
+// Alex Chu        2022/09/25      Implement neccessary functions
 /////////////////////////////////////////////////////////////////
 ***********************************************************************/
 #define _CRT_SECURE_NO_WARNINGS
@@ -35,12 +35,14 @@ namespace sdds {
       rewind(fptr);
       return noOfRecs;
    }
+   // Reads postal code from the stream, skips the comma and return true if successful
    bool read(char postalCode[])
    {
       bool ret = false;
       ret = fscanf(fptr, "%[^,],", postalCode) == 1;
       return ret;
    }
+   // Reads population from the stream, skips the newline and return true if successful
    bool read(int& population)
    {
       bool ret = false;
