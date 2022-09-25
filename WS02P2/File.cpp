@@ -35,6 +35,21 @@ namespace sdds {
       rewind(fptr);
       return noOfRecs;
    }
+   bool read(char postalCode[])
+   {
+      bool ret = false;
+      ret = fscanf(fptr, "%[^,],", postalCode) == 1;
+      return ret;
+   }
+   bool read(int& population)
+   {
+      bool ret = false;
+      ret = fscanf(fptr, "%d\n", &population) == 1;
+      return ret;
+   }
+   //bool read(char* postalCode, int* population) {
+   //   return(fscanf(fptr, "%[^,],%d\n", postalCode,population));
+   //}
    // Closes the open file
    void closeFile() {
       if (fptr) fclose(fptr);

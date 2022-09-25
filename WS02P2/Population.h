@@ -13,7 +13,7 @@ I have done all the coding by myself and only copied the code that my professor 
 namespace sdds {
    struct Population {
       char* m_postalCode;
-      int m_population[];
+      int m_population;
    };
    bool load(const char filename[]);
    void display();

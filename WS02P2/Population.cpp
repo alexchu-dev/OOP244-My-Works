@@ -16,32 +16,46 @@ I have done all the coding by myself and only copied the code that my professor 
 
 using namespace std;
 namespace sdds {
-   Population pop;
+   Population* pop = nullptr;
    bool load(const char filename[])
    {
+      bool ret = false;
       if (openFile(filename)) {
          if (noOfRecords() > 0) {
             cout << "There are " << noOfRecords() << " records in the file." << endl;
-            return true;
+            cout << pop << endl;
+            pop = new Population[noOfRecords()];
+            if (!pop)
+            {
+               cout << "Memory allocation failed!" << endl;
+            }
+            else
+               cout << pop << endl;
+            /*char* postalCode[8];
+            int* population = nullptr;
+            readLine(postalCode, population);
+            cout << postalCode;
+            ret  = true;*/
          }
          else {
             cout << "Error: incorrect number of records read; the data is possibly corrupted!" << endl;
-            return false;
+            ret = false;
          }
       }
-      else
+      else {
          cout << "Could not open data file: " << filename << endl;
-         return false;
+         ret = false;
+      }
+      return ret;
    }
    void display() {
-      Population* aptr;
-      int noOfRecs = noOfRecords();
-      aptr = nullptr;
-      aptr = new Population[noOfRecs];
       
-      cout << "hihi" << endl;
+
+      
    }
    void deallocateMemory() {
-      
+      delete[] pop;
+      pop = nullptr;
+      cout << pop << endl;
    }
 }
