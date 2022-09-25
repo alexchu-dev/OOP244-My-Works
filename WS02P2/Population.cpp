@@ -24,7 +24,8 @@ namespace sdds {
    {
       bool ret = false;    //Default ret to false
       if (openFile(filename)) {
-         if (noOfRecs = noOfRecords()) {     //Returns and check the value of noOfRecords() > 0
+         //Returns and check the value of noOfRecords() > 0
+         if ((noOfRecs = noOfRecords())) {     
             pop = new Population[noOfRecs];     //DMA set
             if (!pop)      //Just in case if DMA fails
             {
@@ -47,6 +48,7 @@ namespace sdds {
             cout << "Error: incorrect number of records read; the data is possibly corrupted!" << endl;
             ret = false;
          }
+         closeFile();
       }
       else
       {
@@ -83,7 +85,7 @@ namespace sdds {
       cout << "-------------------------" << endl;
       for (int i=0; i < noOfRecs; i++)
       {
-         cout << i+1 << "- " << pop[i].m_postalCode << ": " << pop[i].m_population << endl;
+         cout << i+1 << "- " << pop[i].m_postalCode << ":  " << pop[i].m_population << endl;
          total += pop[i].m_population;
       }
       cout << "-------------------------" << endl;
