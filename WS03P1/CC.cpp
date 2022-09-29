@@ -13,5 +13,28 @@ I have done all the coding by myself and only copied the code that my professor 
 #include "Utils.h"
 using namespace std;
 namespace sdds {
-   
+   bool CC::validate(const char* name, unsigned long long cardNo, short cvv, short expMon, short expYear)const {
+
+   }
+   void CC::prnNumber() const {
+
+   }
+   void CC::set() {
+
+   }
+   void  CC::cleanUp() {
+
+   }
+   bool  CC::isEmpty() const {
+
+   }
+   void  CC::set(const char* cc_name, unsigned long long cc_no, short cvv, short expMon, short expYear) {
+
+   }
+   bool  CC::read() {
+
+   }
+   void  CC::display(int row = 0) const {
+
+   }
 }
