@@ -29,10 +29,12 @@ namespace sdds {
    void CC::prnNumber() const {
       long long cardNo = m_ccNum;
       const int setNum = 4;
-      int ccard[setNum];
+      long long ccard[setNum] = {};
       for (int i = 0; i < setNum; i++) {
-         ccard[i] = cardNo / long(pow(10000, setNum - 1 - i));
-         cardNo = cardNo % long(pow(10000, setNum - 1 - i));
+         ccard[i] = cardNo / long long(pow(10000, setNum - 1 - i));
+         cardNo = cardNo % long long(pow(10000, setNum - 1 - i));
+         cout.width(4);
+         cout.fill('0');
          cout << ccard[i] << " ";
       }
       /*Alternative way to avoid using int array and fewer line:
@@ -61,13 +63,92 @@ namespace sdds {
    }
    //First, it will cleanUp() the object. Then if all the arguments are valid using validate(), it will dynamically keep a copy of the name in the name attribute and set the rest of the attributes to their corresponding values. If any of the arguments are invalid, nothing will be set.
    void  CC::set(const char* cc_name, unsigned long long cc_no, short cvv, short expMon, short expYear) {
-
+      cleanUp();
+      if (validate(cc_name, cc_no, cvv, expMon, expYear)) {
+         m_name = new char[strlen(cc_name) + 1];
+         strcpy(m_name, cc_name, 30);
+         m_cvv = cvv;
+         m_expMon = expMon;
+         m_expYear = expYear;
+         m_ccNum = cc_no;
+      }
    }
    //Assuming that the names are not longer than 70 characters, this function will attempt to read all the values from the console in local (function scope) variables first and if successful, they will be validated and then stored in the object. The function will return true if the values are stored in the object and false otherwise.
    bool  CC::read() {
-
+      bool ret;
+      /*bool done = false;*/
+      char* cc_name = nullptr;
+      cc_name = new char[71] ;
+      unsigned long long cc_no;
+      short cvv, expMon, expYear;
+      cleanUp();
+      cout << "Card holder name: ";
+      cin.getline(cc_name, 71, '\n');
+      if (cin) cout << "Credit card number: ";
+      cin >> cc_no;
+      if (cin) cout << "Card Verification Value (CVV): ";
+      cin >> cvv;
+      if (cin) cout << "Expiry month and year (MM/YY): ";
+      /*while (!done) {*/
+      cin >> expMon;
+      if (cin) cin.ignore(1);
+      cin >> expYear;
+      if (cin.fail()) {
+      cin.clear();
+      cin.ignore(1000, '\n');
+      /*cout << "Invalid input, try again!" << endl;*/
+      }
+      else {
+      set(cc_name, cc_no, cvv, expMon, expYear);
+      /*done = true;*/
+      cin.clear();
+      }
+      /*}*/
+      delete[] cc_name;
+      ret = !isEmpty();
+      return ret;
    }
-   void  CC::display(int row = 0) const {
 
+   //Display the object, if isEmpty() output invalid text. If it is not in safe empty state, print out depending if the row is 0 or greater. Print the row in specific format.
+   void  CC::display(int row) const {
+      if (isEmpty())
+         cout << "Invalid Credit Card Record" << endl;
+      else if (row > 0) {
+         cout << "|";
+         cout.width(3);
+         cout.fill(' ');
+         cout.setf(ios::right);
+         cout << row;
+         cout.unsetf(ios::right);
+         cout << " | ";
+         cout.width(30);
+         cout.fill(' ');
+         cout.setf(ios::left);
+         cout << m_name;
+         cout.unsetf(ios::left);
+         cout << " | ";
+         prnNumber();
+         cout << "| ";
+         cout.width(3);
+         cout.fill(' ');
+         cout << m_cvv;
+         cout << " | ";
+         cout.width(2);
+         cout.fill(' ');
+         cout.setf(ios::right);
+         cout << m_expMon;
+         cout.unsetf(ios::right);
+         cout << "/";
+         cout << m_expYear;
+         cout << " |" << endl;
+      }
+      else {
+         cout << "Name: " << m_name << endl;
+         cout << "Creditcard No: ";
+         prnNumber();
+         cout << endl;
+         cout << "Card Verification Value: " << m_cvv << endl;
+         cout << "Expiry Date: " << m_expMon << "/" << m_expYear << endl;
+      }
    }
 }
