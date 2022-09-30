@@ -54,7 +54,7 @@ int main() {
    } else {
       cout << "Values are readable but not valid credit card information!" << endl;
    }
-   cout << "Press Enter to start validation tests, all the following must fail." << endl;
+   cout << "Press Enter to start validation tests, all the following must fail.\n" << endl;
    cin.ignore(1000, '\n');
    cc.set("HB", 4098765423457896, 123, 5, 25);
    cc.display();

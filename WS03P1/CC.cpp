@@ -31,11 +31,15 @@ namespace sdds {
       const int setNum = 4;
       long long ccard[setNum] = {};
       for (int i = 0; i < setNum; i++) {
-         ccard[i] = cardNo / long long(pow(10000, setNum - 1 - i));
-         cardNo = cardNo % long long(pow(10000, setNum - 1 - i));
+         long long base = (pow(10000, setNum - 1 - i));
+         ccard[i] = cardNo / base;
+         cardNo = cardNo % base;
          cout.width(4);
          cout.fill('0');
-         cout << ccard[i] << " ";
+         cout << ccard[i];
+         if (i < setNum-1){
+            cout << " ";
+         }
       }
       /*Alternative way to avoid using int array and fewer line:
       for (int i = 0; i < 16; i++) {
@@ -66,7 +70,7 @@ namespace sdds {
       cleanUp();
       if (validate(cc_name, cc_no, cvv, expMon, expYear)) {
          m_name = new char[strlen(cc_name) + 1];
-         strcpy(m_name, cc_name, 30);
+         strcpy(m_name, cc_name);
          m_cvv = cvv;
          m_expMon = expMon;
          m_expYear = expYear;
@@ -111,10 +115,19 @@ namespace sdds {
 
    //Display the object, if isEmpty() output invalid text. If it is not in safe empty state, print out depending if the row is 0 or greater. Print the row in specific format.
    void  CC::display(int row) const {
-      if (isEmpty())
+      if (isEmpty()) {
          cout << "Invalid Credit Card Record" << endl;
+      }
       else if (row > 0) {
-         cout << "|";
+         char* tempName = nullptr;
+         tempName = new char[71];
+         if (strlen(m_name) > 30) {
+            strcpy(tempName, m_name, 30);
+         }
+         else {
+            strcpy(tempName, m_name);
+         }
+         cout << "| ";
          cout.width(3);
          cout.fill(' ');
          cout.setf(ios::right);
@@ -124,11 +137,11 @@ namespace sdds {
          cout.width(30);
          cout.fill(' ');
          cout.setf(ios::left);
-         cout << m_name;
+         cout << tempName;
          cout.unsetf(ios::left);
          cout << " | ";
          prnNumber();
-         cout << "| ";
+         cout << " | ";
          cout.width(3);
          cout.fill(' ');
          cout << m_cvv;
@@ -141,6 +154,8 @@ namespace sdds {
          cout << "/";
          cout << m_expYear;
          cout << " |" << endl;
+         delete[] tempName;
+         tempName = nullptr;
       }
       else {
          cout << "Name: " << m_name << endl;
