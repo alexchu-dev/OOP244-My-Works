@@ -33,14 +33,14 @@ int main() {
    FILE* fptr = fopen("simpsons.txt","r");
    NameTag nt;
    TagList tl;
-   tl.set();
-   tl.set(noOfNames(fptr));
+   tl.set();   //empty state
+   tl.set(noOfNames(fptr));   //clean up, then use DMA to set by the record num
    while(fscanf(fptr, "%[^\n]\n", name) == 1) {
-      nt.set(name);
-      tl.add(nt);
+      nt.set(name);  //set name to NameTag
+      tl.add(nt); //add NameTag to TagList
    }
-   tl.print();
-   tl.cleanup();
+   tl.print(); //tagName print out all the tags
+   tl.cleanup();  //delete[] and set to nullptr
    fclose(fptr);
    return 0;
 }

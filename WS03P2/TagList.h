@@ -9,10 +9,12 @@
 ******************************************************************************/
 #ifndef SDDS_TAGLIST_H_
 #define SDDS_TAGLIST_H_
+#include "NameTag.h"
 namespace sdds {
    class TagList {
       NameTag* m_NameTag;
       int m_noOfTags;
+
    public:
       void set();
       void set(int num);
