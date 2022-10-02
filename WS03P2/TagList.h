@@ -16,7 +16,7 @@ namespace sdds {
    public:
       void set();
       void set(int num);
-      //void add(const NameTag& nt);
+      void add(const NameTag& nt);
       void print();
       void cleanup();
    };

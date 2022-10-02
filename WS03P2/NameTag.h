@@ -13,6 +13,7 @@ namespace sdds {
    //create a NameTag class to hold a name up to 50 chars (not dynamic) and print it with a frame around it.
    class NameTag {
       char m_name[51];
+   public:
       void set(const char* name);
    };
 }

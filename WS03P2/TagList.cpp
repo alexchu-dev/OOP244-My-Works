@@ -17,11 +17,13 @@ namespace sdds {
       m_noOfTags = 0;
    }
    void TagList::set(int num) {
+      cleanup();
+      m_NameTag = new NameTag[num];
+      m_noOfTags = num;
+   }
+   void TagList::add(const NameTag& nt) {
       
    }
-   //void TagList::add(const NameTag& nt) {
-   //   
-   //}
    void TagList::print() {
       
    }
