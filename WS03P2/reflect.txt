@@ -1,0 +1,21 @@
+/******************************************************************************
+//                    OOP244NAA - WS03 Part 2 @ Sep 30 2022
+//Full Name  : Alex Chu
+//Student ID#: 153954219
+//Email      : kchu30@myseneca.ca
+//
+//I have done all the coding by myself and only copied the code
+//that my professor provided to complete my workshops and assdignments.
+******************************************************************************/
+
+I have learnt about Member functions and privacy, safe empty state also the cout formatting in this chapter.
+
+Member functions is something new to me which didn't exist in C before. The struct actually do the same as storing data, but C++ introduces member functions to let logic included in a class which to hide the implementation details from its clients. There are three types of privacy which are public, private and protected (which is not covered yet). Member functions are in three categories which are queries, modifiers and special.
+
+As encapsulation is the core of OO and protects the data, privacy is the core of encapsulation. By seperating member functions in public or private, we can isolate member function which can serve public such as display and receive input, and the data itself or essential member functions together in private.
+
+The "isEmpty" implements Empty State which we can reject data if invalid then return values to default state. Together with the set and cleanup procedures, it ensure things are clear and systematic to prevent errors.
+
+The formatting of cout.width, cout.setf with ios::left, ios::right, ios::fixed etc gives us flexibility.
+
+This requires some time to practise and digest, but this is a very interesting topic because this is more modern and most main stream language are OO.
