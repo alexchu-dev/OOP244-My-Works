@@ -18,6 +18,10 @@ namespace sdds {
    }
    Seat& Seat::alAndCp(const char* str) {
       m_paxName = nullptr;
+      if (str != nullptr) {
+         m_paxName = new char[strlen(str) + 1];
+         strcpy(m_paxName, str);
+      }
       return *this;
    }
    Seat& Seat::reset() {
