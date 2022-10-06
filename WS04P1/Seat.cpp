@@ -1,7 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
-#include <iostream>
-#include <string>
+#include <cstring>
 #include "Seat.h"
+using namespace std;
 namespace sdds {
    //Private method to return true if the row number and the seating letter, together correctly address a seat in the airplane. This method is a query, hence it does not modify the current object.
    bool Seat::validate(int row, char letter)const {
@@ -46,16 +46,15 @@ namespace sdds {
    }
    //Sets the object to the safe empty state as in reset method.
    Seat::Seat() {
-      delete[] m_paxName;
+      //delete[] m_paxName;
       m_paxName = nullptr;
       m_row = 0;
       m_seat = 0;
    }
    //If passengerName argument is a valid and non-empty Cstring, this constructor will allocate memory for passenger name in the passenger name pointer attribute and then copies the content of the passenger name argument into the newly allocated memory.
    Seat::Seat(const char* passengerName) {
-      delete[] m_paxName;
       m_paxName = nullptr;
-      if (passengerName != nullptr && passengerName != "") {
+      if (passengerName != nullptr && passengerName[0] != '\0') {
          m_paxName = new char[strlen(passengerName) + 1];
          strcpy(m_paxName, passengerName);
       }
@@ -64,9 +63,8 @@ namespace sdds {
    }
    //Set corresponding values of pax name and seat after validation. If not, set to 0.
    Seat::Seat(const char* passengerName, int row, char letter) {
-      delete[] m_paxName;
       m_paxName = nullptr;
-      if (passengerName != nullptr && passengerName != "") {
+      if (passengerName != nullptr && passengerName[0] != '\0') {
          m_paxName = new char[strlen(passengerName) + 1];
          strcpy(m_paxName, passengerName);
          set(row, letter);

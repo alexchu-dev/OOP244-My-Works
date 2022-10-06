@@ -1,5 +1,6 @@
 #ifndef SDDS_SEAT_H_
 #define SDDS_SEAT_H_
+#include <iostream>
 namespace sdds {
    class Seat {
       char* m_paxName;
