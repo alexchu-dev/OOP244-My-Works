@@ -109,12 +109,13 @@ namespace sdds {
       else {
          char temp_paxName[41];
          strncpy(temp_paxName, m_paxName, sizeof(temp_paxName));
-         temp_paxName[sizeof(temp_paxName) - 1] = '\0';
+         temp_paxName[40] = '\0';
+         char prev = coutRef.fill('.');
          coutRef.width(40);
-         coutRef.fill('.');
          coutRef.setf(std::ios::left);
          coutRef << temp_paxName;
          coutRef.unsetf(std::ios::left);
+         coutRef.fill(prev);
          if (assigned()){
             coutRef << " " << m_row << m_seat;
          }
@@ -130,8 +131,13 @@ namespace sdds {
       int temp_row;
       char temp_seat;
       cinRef.getline(temp_paxName, 71, ',');
-
-      
+      cinRef >> temp_row;
+      cinRef >> temp_seat;
+      cinRef.ignore(1000, '\n');
+      if (!cinRef.fail()) {
+         alAndCp(temp_paxName);
+         set(temp_row, temp_seat); 
+      }
       return cinRef;
    }
 }
