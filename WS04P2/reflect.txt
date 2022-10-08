@@ -1,0 +1,19 @@
+/******************************************************************************
+//                    OOP244NAA - WS04 Part 2 @ Oct 8 2022
+//Full Name  : Alex Chu
+//Student ID#: 153954219
+//Email      : kchu30@myseneca.ca
+//
+//I have done all the coding by myself and only copied the code
+//that my professor provided to complete my workshops and assdignments.
+******************************************************************************/
+
+In this lecture and workshop, I have learnt about Constructors, Destructors and Currect Object (*this) and tried to use them in the workshop.
+
+Constructors and Destructors are NOT functions, they are procedures which is to run once whenever an object and being created and initialised, as well as being destroyed. Constructors can be used for initialisation including giving a intial/ default value, and perform steps as required, while Destructors are to be run automatically whenever the object dies. It provides great encapsulation which is essential to Object Oriented programming. The Constructors can be overloaded by giving different arguments to perform their tasks which is very common in programming.
+
+The Currect Object works with implicit parameters in contrast of explicit parameters. We can simply return *this the data of the current object as a reference which is good for performance.
+
+In the workshop, I had chances to practise how to utilize the constructors, destructors and current object. "*this" is useful as it saves a lot of resource and we can return values while maintain the encapsulation.
+
+This workshop is not difficult to manage, but for the DIY part I would need to draw a flowchart diagram to confirm the procedures before I can move on.
