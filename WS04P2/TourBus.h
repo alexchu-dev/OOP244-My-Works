@@ -13,11 +13,14 @@
 namespace sdds {
    class TourBus {
       TourTicket* m_tickets;
-      int m_rows;
+      int m_paxNum;
+      bool m_board;
    public:
       TourBus(int num);
       ~TourBus();
-      bool validTour();
+      bool validTour()const;
+      TourBus& board();
+      void startTheTour()const;
    };
 
 
