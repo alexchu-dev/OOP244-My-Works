@@ -46,7 +46,7 @@ namespace sdds {
       int i;
       if (m_board == true) {
          cout << "Starting the tour...." << endl;
-         cout << "Passenger List :" << endl;
+         cout << "Passenger List:" << endl;
          cout << "|Row | Passenger Name                           | Num |" << endl;
          cout << "+----+------------------------------------------+-----+" << endl;
          for (i = 0; i < m_paxNum; i++) {
