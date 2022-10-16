@@ -7,7 +7,6 @@
 //I have done all the coding by myself and only copied the code
 //that my professor provided to complete my workshops and assdignments.
 ******************************************************************************/
-#pragma once
 #ifndef SDDS_APARTMENT_H_
 #define SDDS_APARTMENT_H_
 #include <iostream>
