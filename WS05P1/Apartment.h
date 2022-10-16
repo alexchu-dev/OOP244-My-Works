@@ -1,3 +1,12 @@
+/******************************************************************************
+//                    OOP244NAA - WS05 Part 1 @ Oct 14 2022
+//Full Name  : Alex Chu
+//Student ID#: 153954219
+//Email      : kchu30@myseneca.ca
+//
+//I have done all the coding by myself and only copied the code
+//that my professor provided to complete my workshops and assdignments.
+******************************************************************************/
 #pragma once
 #ifndef SDDS_APARTMENT_H_
 #define SDDS_APARTMENT_H_
@@ -25,8 +34,11 @@ namespace sdds
       Apartment& operator-=(double);
       Apartment& operator<<(Apartment&);
       Apartment& operator>>(Apartment&);
+      int getNumber()const { return m_number; }
+      double getBalance()const { return m_balance; }
    };
    double operator+(const Apartment&, const Apartment&);
+   double operator+=(double&, const Apartment&);
 }
 
 #endif // SDDS_APARTMENT_H_
