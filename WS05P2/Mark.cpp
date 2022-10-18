@@ -10,10 +10,10 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "Mark.h"
 #include <iostream>
-#include <iomanip>
 using namespace std;
 namespace sdds
 {
+   //Constructors
    Mark::Mark() {
       m_value = 0;
    }
@@ -25,10 +25,14 @@ namespace sdds
       else
       {
          m_value = 0;
+         m_invalid = 1;  //invalid empty state
       }
    }
    bool Mark::isValid(int value) {
       return value >= 0 && value <= 100;
+   }
+   Mark::operator bool() const {
+      return m_invalid==0;
    }
    Mark::operator int() const {
       return m_value;
@@ -89,9 +93,7 @@ namespace sdds
       }
       return ret;
    }
-   Mark::operator bool() const {
-      return m_value >= 0 && m_value <= 100;
-   }
+  
    bool Mark::operator>(int value)const {
       return m_value > value;
    }
@@ -115,6 +117,10 @@ namespace sdds
       {
          m_value++;
       }
+      else {
+         m_value = 0;
+         m_invalid = 1;
+      }
       return *this;
    }
    Mark& Mark::operator++(int) {
@@ -123,12 +129,20 @@ namespace sdds
       {
          ++(*this);
       }
+      else {
+         m_value = 0;
+         m_invalid = 1;
+      }
       return m;
    }
    Mark& Mark::operator--() {
       if (isValid(m_value - 1))
       {
          m_value--;
+      }
+      else {
+         m_value = 0;
+         m_invalid = 1;
       }
       return *this;
    }
@@ -137,6 +151,10 @@ namespace sdds
       if (isValid(m_value - 1))
       {
         --(*this);
+      }
+      else {
+         m_value = 0;
+         m_invalid = 1;
       }
       return m;
    }
@@ -147,10 +165,12 @@ namespace sdds
       if (isValid(value))
       {
          m_value = value;
+         m_invalid = 0;
       }
       else
       {
          m_value = 0;
+         m_invalid = 1;
       }
       return *this;
    }
@@ -162,6 +182,7 @@ namespace sdds
       else
       {
          m_value = 0;
+         m_invalid = 1;
       }
       return *this;
    }
@@ -173,6 +194,7 @@ namespace sdds
       else
       {
          m_value = 0;
+         m_invalid = 1;
       }
       return *this;
    }
@@ -185,6 +207,7 @@ namespace sdds
       else
       {
          m_value = 0;
+         m_invalid = 1;
       }
       return *this;
    }
@@ -197,10 +220,11 @@ namespace sdds
       else
       {
          rhs.m_value = 0;
+         m_invalid = 1;
       }
       return *this;
    }
-   Mark operator+(const Mark& mark, int value) {
+   Mark operator+(const Mark& mark, const int value) {
       Mark temp = mark;
       if (mark.getMark() + value >= 0 && mark.getMark() + value <= 100)
       {
@@ -208,11 +232,11 @@ namespace sdds
       }
       else
       {
-         temp = 0;
+         temp = -1;
       }
       return temp;
    }
-   Mark operator+(int value, const Mark& mark) {
+   Mark operator+(const int value, const Mark& mark) {
       Mark temp = mark;
       if (mark.getMark() + value >= 0 && mark.getMark() + value <= 100)
       {
@@ -220,7 +244,7 @@ namespace sdds
       }
       else
       {
-         temp = 0;
+         temp = -1;
       }
       return temp;
    }
@@ -232,21 +256,21 @@ namespace sdds
       }
       else
       {
-         temp = 0;
+         temp = -1;
       }
       return temp;
    }
-   int operator+=(int value, const Mark& mark) {
-      return value + mark.getMark();
+   int operator+=(int& value, const Mark& mark) {
+      return value += mark.getMark();
    }
-   int operator+=(const Mark& mark, int value) {
-      return value + mark.getMark();
+   int operator+=(const Mark& mark, int& value) {
+      return value += mark.getMark();
    }
-   int operator-=(int value, const Mark& mark) {
-      return value - mark.getMark();
+   int operator-=(int& value, const Mark& mark) {
+      return value -= mark.getMark();
    }
-   int operator-=(const Mark& mark, int value) {
-      return value - mark.getMark();
+   int operator-=(const Mark& mark, int& value) {
+      return value -= mark.getMark();
    }
 
 } 

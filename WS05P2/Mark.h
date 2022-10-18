@@ -15,15 +15,16 @@ namespace sdds
 {
    class Mark
    {
-      int m_value = 0; 
+      int m_value = 0;
+      bool m_invalid = 0;
    public:
       Mark();
       Mark(int);
       bool isValid(const int);
+      operator bool()const;
       operator int()const;
       operator double()const;
       operator char()const;
-      operator bool()const;
       bool operator>(int)const;
       bool operator<(int)const;
       bool operator>=(int)const;
@@ -45,10 +46,10 @@ namespace sdds
    Mark operator+(const Mark&, int);
    Mark operator+(int, const Mark&);
    Mark operator+(const Mark&, const Mark&);
-   int operator+=(int, const Mark&);
+   int operator+=(int&, const Mark&);
    int operator+=(const Mark&, int);
-   int operator-=(int, const Mark&);
-   int operator-=(const Mark&, int);
+   int operator-=(int&, const Mark&);
+   int operator-=(const Mark&, int&);
 }
  
 
