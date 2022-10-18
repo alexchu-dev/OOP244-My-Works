@@ -1,0 +1,17 @@
+/******************************************************************************
+//                    OOP244NAA - WS05 Part 2 @ Oct 18 2022
+//Full Name  : Alex Chu
+//Student ID#: 153954219
+//Email      : kchu30@myseneca.ca
+//
+//I have done all the coding by myself and only copied the code
+//that my professor provided to complete my workshops and assdignments.
+******************************************************************************/
+
+This workshop is a review of member operators and helper functions. This topic is very very very confusing and I was so stuck (and I believe I am still stuck up until now, but I have pinched a hole so that water can still flow). As all the operators were fixed in my knowledge, it is challenging to learn that they could be overloaded to something else. Despite the struggles, it is very interesting as well because it is like learning to think out of the box which I am used to frame everything with my old knowledge in my previous life.
+
+The LAB part was easy once I can make it clear what I have to do by the guidelines. I learned about using binary helper operators, but as I have learned from Fardad we could use binary member operators as well I do not quite get it why I had to use binary helper operators on that part.
+
+The DIY was difficult, because everything is not clear in my mind yet. Especially I am weak on creating something from scratch, fear grows like I am in the middle of the sea and finding where is the land. There were a lot of ambiguous operators coming up when I tried to put the operator + and - etc in the member operator instead, I could not fix it so I kept that as helper operators finally. Will figure it out or ask Fardad later.
+
+I am still behind of the lectures, at least 2 weeks I guess, while I am already distributing most of my time on C++ and none on Javascript which I will be screwed. But I will fully utilize my study week so that I can review all the notes again and the Youtube video. I have been reading the notes again and again, but I am slow to watch the videos because I have to play back and rewinding, hopefully I can catch up. Hard works compensate stupidity.
