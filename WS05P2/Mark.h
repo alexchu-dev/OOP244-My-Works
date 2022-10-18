@@ -44,7 +44,7 @@ namespace sdds
       int getMark()const { return m_value; }
    };
    Mark operator+(const Mark&, int);
-   Mark operator+(int, const Mark&);
+   int operator+(int, const Mark&);
    Mark operator+(const Mark&, const Mark&);
    int operator+=(int&, const Mark&);
    int operator+=(const Mark&, int);

@@ -236,7 +236,7 @@ namespace sdds
       }
       return temp;
    }
-   Mark operator+(const int value, const Mark& mark) {
+   int operator+(const int value, const Mark& mark) {
       Mark temp = mark;
       if (mark.getMark() + value >= 0 && mark.getMark() + value <= 100)
       {
@@ -246,7 +246,7 @@ namespace sdds
       {
          temp = -1;
       }
-      return temp;
+      return temp.getMark();
    }
    Mark operator+(const Mark& lhs, const Mark& rhs) {
       Mark temp = lhs;
