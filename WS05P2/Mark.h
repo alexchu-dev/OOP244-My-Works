@@ -32,9 +32,9 @@ namespace sdds
       bool operator==(int)const;
       bool operator!=(int)const;
       Mark& operator++();
-      Mark& operator++(int);
+      Mark operator++(int);
       Mark& operator--();
-      Mark& operator--(int);
+      Mark operator--(int);
       bool operator~()const;
       Mark& operator=(int);
       Mark& operator+=(int);

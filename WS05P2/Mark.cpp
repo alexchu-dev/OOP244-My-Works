@@ -123,7 +123,7 @@ namespace sdds
       }
       return *this;
    }
-   Mark& Mark::operator++(int) {
+   Mark Mark::operator++(int) {
       Mark m = *this;
       if (isValid(m_value + 1))
       {
@@ -146,7 +146,7 @@ namespace sdds
       }
       return *this;
    }
-   Mark& Mark::operator--(int) {
+   Mark Mark::operator--(int) {
       Mark m = *this;
       if (isValid(m_value - 1))
       {
