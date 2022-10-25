@@ -212,7 +212,10 @@ namespace sdds {
             ofstream f(m_filename);
             if (f) {
                for (int i = 0; i < m_numCount; i++) {
+                  f.setf(ios::fixed);
+                  f.precision(2);
                   f << m_numbers[i] << endl;
+                  f.unsetf(ios::fixed);
                }
             }
          }
@@ -230,6 +233,8 @@ namespace sdds {
          else
             ostr << "*** COPY ***" << endl;
          for (int i = 0; i < m_numCount; i++) {
+            ostr.setf(ios::fixed);
+            ostr.precision(2);
             ostr << m_numbers[i];
             if (i + 1 < m_numCount)
                ostr << ", ";
@@ -238,10 +243,11 @@ namespace sdds {
          }
          ostr << "-------------------------" << endl;
          ostr << "Total of " << m_numCount << " number(s)" << endl;
-         ostr << "Largest number: " << max() << endl;
+         ostr << "Largest number:  " << max() << endl;
          ostr << "Smallest number: " << min() << endl;
-         ostr << "Average: " << average() << endl;
+         ostr << "Average:         " << average() << endl;
          ostr << "=========================";
+         ostr.unsetf(ios::fixed);
       }
       return ostr;
    }
