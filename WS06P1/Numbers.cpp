@@ -43,6 +43,7 @@ namespace sdds {
       if (this != &src) {
          // deallocate previous allocated dynamic memory
          delete[] m_numbers;
+         delete[] m_filename;
          setEmpty();
          m_isOriginal = false;
          // allocate new dynamic memory if needed
