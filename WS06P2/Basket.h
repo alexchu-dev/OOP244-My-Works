@@ -31,6 +31,7 @@ namespace sdds {
       Basket& operator=(const Basket& src); //copy assignment operator for basket
       Fruit& operator=(const Fruit& src); //copy assignment operator for fruit
       ~Basket(); //destructor
+      void setFruit(Fruit* fruits, int size); //set fruits with DMA
       void setPrice(double price); //update price attribute
       operator bool() const; //conversion operator
       Basket& operator+=(const Fruit& src); //overload += add fruits

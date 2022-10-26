@@ -21,9 +21,8 @@ namespace sdds {
    {
       setEmpty();
        if (fruits != nullptr && size > 0 && price > 0) {
-         m_fruits = fruits;
-         m_size = size;
-         m_price = price;
+          setFruit(fruits, size);
+          setPrice(price);
       }
    }
    Basket::Basket(const Basket& src)
@@ -35,19 +34,14 @@ namespace sdds {
    {
       // check for self-assignment
       if (this != &src) {
+         deallocate();
          // deallocate previous allocated dynamic memory
-         if (src.m_fruits != nullptr) {
-            deallocate();
-            m_fruits = new Fruit[src.m_size];
-            for (int i = 0; i < src.m_size; i++) {
-               m_fruits[i] = src.m_fruits[i];
-            }
-            m_size = src.m_size;
-            m_price = src.m_price;
+         if (src.m_fruits != nullptr) {            
+            setFruit(src.m_fruits, src.m_size);
+            setPrice(src.m_price);
          }
          else {
             setEmpty();
-            deallocate();
          }
       }
       return *this;
@@ -61,6 +55,14 @@ namespace sdds {
    Basket::~Basket()
    {
       deallocate();
+   }
+   void Basket::setFruit(Fruit* fruits, int size)
+   {
+      m_fruits = new Fruit[size];
+      for (int i = 0; i < size; i++) {
+         m_fruits[i] = fruits[i];
+      }
+      m_size = size;
    }
    void Basket::setPrice(double price)
    {
@@ -97,8 +99,8 @@ namespace sdds {
 
    void Basket::deallocate()
    {
-      m_fruits = nullptr;
-      delete[] m_fruits; 
+      delete[] m_fruits;
+      m_fruits = nullptr;  
    }
    std::ostream& operator<<(std::ostream& ostr, const Basket& src)
    {
