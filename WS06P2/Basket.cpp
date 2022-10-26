@@ -107,7 +107,11 @@ namespace sdds {
          ostr.setf(ios::right);
          for (int i = 0; i < src.m_size; i++) {
             ostr.width(10);
-            ostr << src.m_fruits[i].m_name << ": " << src.m_fruits[i].m_qty << "kg" << endl;
+            ostr << src.m_fruits[i].m_name << ": ";
+            ostr.setf(ios::fixed);
+            ostr.precision(2);
+            ostr << src.m_fruits[i].m_qty << "kg" << endl;
+            ostr.unsetf(ios::fixed);
          }
          ostr.unsetf(ios::right);
          ostr.setf(ios::fixed);
