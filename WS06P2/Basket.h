@@ -28,11 +28,13 @@ namespace sdds {
       Basket(); //default constructor
       Basket(Fruit* fruits, int size, double price); //custom constructor
       Basket(const Basket& src); //copy constructor
-      Basket& operator=(const Basket& src); //copy assignment operator
+      Basket& operator=(const Basket& src); //copy assignment operator for basket
+      Fruit& operator=(const Fruit& src); //copy assignment operator for fruit
       ~Basket(); //destructor
       void setPrice(double price); //update price attribute
       operator bool() const; //conversion operator
       Basket& operator+=(const Fruit& src); //overload += add fruits
+      friend std::ostream& operator<<(std::ostream& ostr, const Basket& src);
    };
 }
 #endif // !SDDS_BASKET_H_
