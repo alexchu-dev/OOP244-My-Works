@@ -103,7 +103,7 @@ namespace sdds {
    std::ostream& operator<<(std::ostream& ostr, const Basket& src)
    {
       if (src.m_fruits != nullptr) {
-         ostr << "Basket Content :" << endl;
+         ostr << "Basket Content:" << endl;
          ostr.setf(ios::right);
          for (int i = 0; i < src.m_size; i++) {
             ostr.width(10);
