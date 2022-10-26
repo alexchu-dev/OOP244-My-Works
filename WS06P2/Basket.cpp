@@ -60,7 +60,7 @@ namespace sdds {
    }
    Basket::~Basket()
    {
-      //deallocate();
+      deallocate();
    }
    void Basket::setPrice(double price)
    {
@@ -97,8 +97,8 @@ namespace sdds {
 
    void Basket::deallocate()
    {
-      delete[] m_fruits;
       m_fruits = nullptr;
+      delete[] m_fruits; 
    }
    std::ostream& operator<<(std::ostream& ostr, const Basket& src)
    {
