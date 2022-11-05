@@ -1,7 +1,7 @@
 /***********************************************************************
 // Menu Module
 // File  menu.cpp
-// Version 0.0
+// Version 0.11
 // Date  3 Nov 2022
 // Author   Alex Chu
 // Revision History
@@ -13,6 +13,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include "Menu.h"
+#include "Utils.h"
 using namespace std;
 namespace sdds {
    /*~~~~~~~~MenuItem stuff starts below~~~~~~~~*/
@@ -26,7 +27,7 @@ namespace sdds {
    MenuItem::MenuItem(const char* text)
    {
       if (text != nullptr) {
-         strncpy(m_text, text, 50);
+         strcpy(m_text, text, 50);
          m_text[50] = 0;
       }
       else {
@@ -61,7 +62,7 @@ namespace sdds {
    Menu::Menu(const char* text, int indentation)
    {
       if (text != nullptr) {
-         strncpy(m_title, text, 50);
+         strcpy(m_title, text, 50);
          m_title[50] = 0;
          m_noOfItems = 0;
          m_indentation = indentation;
@@ -132,7 +133,7 @@ namespace sdds {
    Menu& Menu::operator=(const char* title)
    {
       if (title != nullptr) {
-         strncpy(m_title, title, 50);
+         strcpy(m_title, title, 50);
          m_title[50] = 0;
       }
       return *this;
@@ -159,7 +160,7 @@ namespace sdds {
          }
          else {
             if (m_items[m_noOfItems].m_text[0] == '\0') {
-               strncpy(m_items[m_noOfItems].m_text, item, 50);
+               strcpy(m_items[m_noOfItems].m_text, item, 50);
                m_noOfItems++;
             }
          }
