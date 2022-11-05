@@ -21,7 +21,7 @@ void testMenus(const Menu& m, const Menu& sub1, const Menu& sub2);
 void TT(const char* title);
 int main() {
    TT("M1T1: constructors");
-   Menu mainMenu("** Main Menu **");
+   Menu mainMenu("** Main Menu **"  );
    Menu subMenu1("** Sub Menu One **", 1);
    Menu subMenu2("** Sub Menu **", 2);
    Menu tempMenu("** Temp **");

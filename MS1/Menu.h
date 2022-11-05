@@ -5,13 +5,16 @@
 namespace sdds {
    class MenuItem {
       char m_text[51];
-   public:
       MenuItem();
-      MenuItem(char* text);
+      MenuItem(const char* text);
       std::ostream& display(std::ostream& coutRef = std::cout)const;
+      void setEmpty();
+      
+      /* Prevent copy and assignment */
       MenuItem(const MenuItem& src) = delete;
       MenuItem& operator=(const MenuItem& src) = delete;
-      void setEmpty();
+ 
+   public:
       friend class Menu;
    };
    class Menu {
@@ -21,10 +24,22 @@ namespace sdds {
       int m_indentation;
    public:
       Menu();
-      Menu(char* text, int indentation = 0);
-      Menu(const Menu& src) = delete;
-      Menu& operator=(const Menu& src) = delete;  
+      Menu(const char* text, int indentation=0);
+      operator bool()const;
+      bool isEmpty()const;
       void setEmpty();
+      std::ostream& display(std::ostream& coutRef = std::cout)const;
+      std::ostream& indent(std::ostream& coutRef = std::cout)const;
+      Menu& operator=(const char* title);
+      Menu& operator<<(const char* item);
+      void add(const char* item);
+      int run()const;
+      operator int()const;
+      void clear();
+      
+      /* Prevent copy and assignment */
+      Menu(const Menu& src) = delete;
+      Menu& operator=(const Menu& src) = delete;
    };
 }
 #endif
