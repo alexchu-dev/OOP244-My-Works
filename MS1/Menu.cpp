@@ -103,18 +103,17 @@ namespace sdds {
       }
       else if (m_noOfItems == 0)
       {
+         indent(coutRef) << m_title << endl;
          coutRef << "No Items to display!" << endl;
       }
       else {
-         indent(coutRef);
-         coutRef << m_title << endl;
+         indent(coutRef) << m_title << endl;
          for (int i = 0; i < m_noOfItems; i++)
          {
-            indent(coutRef);
-            coutRef << i + 1 << "-";
+            indent(coutRef) << i + 1 << "-";
             coutRef << " " << m_items[i].m_text << endl;
          }
-         coutRef << "> ";
+         indent(coutRef) << "> ";
       }
       return coutRef;
    }
@@ -169,13 +168,13 @@ namespace sdds {
    int Menu::run() const
    {
       int selection;
+      display();
       if (m_noOfItems == 0 || isEmpty())
       {
          selection = 0;
       }
       else
       {
-         display();
          do {
             do {
                if (cin.fail()) {
@@ -189,6 +188,7 @@ namespace sdds {
                cout << "Invalid selection, try again: ";
             }
          } while (selection < 1 || selection > m_noOfItems);
+         
       }
       return selection;
    }
@@ -198,6 +198,10 @@ namespace sdds {
    }
    void Menu::clear()
    {
-      setEmpty();
+      for (int i = 0; i < MAX_NO_OF_ITEMS; i++) {
+         m_items[i].m_text[0] = '\0';
+      }
+      m_noOfItems = 0;
+      m_indentation = 0;
    }
 }
