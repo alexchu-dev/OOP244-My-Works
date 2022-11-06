@@ -184,6 +184,7 @@ namespace sdds {
                   cout << "Invalid Integer, try again: ";
                }
                cin >> selection;
+               cin.ignore(256, '\n');
             } while (cin.fail());
             if (selection < 1 || selection > m_noOfItems) {
                cout << "Invalid selection, try again: ";
