@@ -41,7 +41,7 @@ namespace sdds {
       ~Parking();
       void setFilename(const char* filepath);
       int run();
-      int& selectMenu(const Menu* menu);
+      int selectMenu(const Menu* menu);
    };
    
 

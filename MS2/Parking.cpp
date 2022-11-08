@@ -91,7 +91,7 @@ namespace sdds {
       return (isEmpty());
    }
 
-   int& Parking::selectMenu(const Menu* menu)
+   int Parking::selectMenu(const Menu* menu)
    {
       int selection = 0;
       do {
