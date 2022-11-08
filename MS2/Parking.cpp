@@ -26,7 +26,7 @@ namespace sdds {
       setFilename(filepath);
       if (loadData()) {
             m_parkingMenu = new Menu("Parking Menu, select an action:", 0);
-            *m_parkingMenu << "Park Vehice" << "Return Vehicle" << "List Parked Vehicles" << "Find Vehicle" << "Close Parking (End of day)" << "Exit Program";
+            *m_parkingMenu << "Park Vehicle" << "Return Vehicle" << "List Parked Vehicles" << "Find Vehicle" << "Close Parking (End of day)" << "Exit Program";
             m_vehicleMenu = new Menu("Select type of the vehicle:", 1);
             *m_vehicleMenu << "Car" << "Motorcycle" << "Cancel";
       }
