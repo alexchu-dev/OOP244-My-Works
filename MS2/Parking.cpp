@@ -210,13 +210,13 @@ namespace sdds {
    bool Parking::closeParking()
    {
       cout << "This will close the parking; All the vehicles will be removed!" << endl;
-      cout << "Are you sure? (Y)es/(N)o:";
+      cout << "Are you sure? (Y)es/(N)o: ";
       return yesno();
    }
    bool Parking::exitParking()
    {
       cout << "This will terminate the application and save the data!" << endl;
-      cout << "Are you sure? (Y)es/(N)o:";
+      cout << "Are you sure? (Y)es/(N)o: ";
       return yesno();
    }
    bool Parking::yesno()
