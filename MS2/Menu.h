@@ -32,11 +32,6 @@ namespace sdds {
       MenuItem m_items[MAX_NO_OF_ITEMS];
       int m_noOfItems;
       int m_indentation;
-      operator bool()const;
-      bool isEmpty()const;
-      void setEmpty();
-      operator int()const;
-      void clear();
       /* Prevent copy and assignment */
       Menu(const Menu& src) = delete;
       Menu& operator=(const Menu& src) = delete;
@@ -46,6 +41,11 @@ namespace sdds {
       Menu& operator=(const char* title);
       Menu& operator<<(const char* item);
       void add(const char* item);
+      operator bool()const;
+      bool isEmpty()const;
+      void setEmpty();
+      operator int()const;
+      void clear();
       std::ostream& display(std::ostream& coutRef = std::cout)const;
       std::ostream& indent(std::ostream& coutRef = std::cout)const;
       int run()const;

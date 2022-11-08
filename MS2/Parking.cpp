@@ -25,10 +25,8 @@ namespace sdds {
    Parking::Parking(const char* filepath) {
       setFilename(filepath);
       if (loadData()) {
-            m_parkingMenu = new Menu("Parking Menu, select an action:", 0);
-            *m_parkingMenu << "Park Vehicle" << "Return Vehicle" << "List Parked Vehicles" << "Find Vehicle" << "Close Parking (End of day)" << "Exit Program";
-            m_vehicleMenu = new Menu("Select type of the vehicle:", 1);
-            *m_vehicleMenu << "Car" << "Motorcycle" << "Cancel";
+            m_parkingMenu << "Park Vehicle" << "Return Vehicle" << "List Parked Vehicles" << "Find Vehicle" << "Close Parking (End of day)" << "Exit Program";
+            m_vehicleMenu << "Car" << "Motorcycle" << "Cancel";
       }
       else {
          cout << "Error in data file" << endl;
@@ -62,7 +60,7 @@ namespace sdds {
       if (!isEmpty()) {
          do {
             parkingStatus();
-            m_parkingMenu->display();
+            m_parkingMenu.display();
             selection = selectMenu(m_parkingMenu);
             switch (selection) {
             case 1:
@@ -91,7 +89,7 @@ namespace sdds {
       return (isEmpty());
    }
 
-   int Parking::selectMenu(const Menu* menu)
+   int Parking::selectMenu(Menu& menu)
    {
       int selection = 0;
       do {
@@ -103,10 +101,10 @@ namespace sdds {
             }
             cin >> selection;
          } while (cin.fail());
-         if (selection < 1 || selection > menu->noOfItems()) {
+         if (selection < 1 || selection > menu.noOfItems()) {
             cout << "Invalid selection, try again: ";
          }
-      } while (selection < 1 || selection > menu->noOfItems());
+      } while (selection < 1 || selection > menu.noOfItems());
       return selection;
    }
 
@@ -122,10 +120,6 @@ namespace sdds {
    {
       delete[] m_filename;
       m_filename = nullptr;
-      delete[] m_parkingMenu;
-      m_parkingMenu = nullptr;
-      delete[] m_vehicleMenu;
-      m_vehicleMenu = nullptr;
    }
    bool Parking::loadData()
    {
@@ -162,7 +156,7 @@ namespace sdds {
    void Parking::parkVehicle()
    {
       int selection = 0;
-      m_vehicleMenu->display();
+      m_vehicleMenu.display();
       selection = selectMenu(m_vehicleMenu);
       switch (selection) {
          case 1:

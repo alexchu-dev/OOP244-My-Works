@@ -17,8 +17,8 @@
 namespace sdds {
    class Parking {
       char* m_filename;
-      Menu* m_parkingMenu;
-      Menu* m_vehicleMenu;
+      Menu m_parkingMenu{"Parking Menu, select an action:", 0};
+      Menu m_vehicleMenu{"Select type of the vehicle:", 1};
       void setEmpty();
       void deallocate();
       bool loadData();
@@ -41,7 +41,7 @@ namespace sdds {
       ~Parking();
       void setFilename(const char* filepath);
       int run();
-      int selectMenu(const Menu* menu);
+      int selectMenu(Menu& menu);
    };
    
 
