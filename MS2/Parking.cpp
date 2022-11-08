@@ -196,7 +196,7 @@ namespace sdds {
    void Parking::listParkedVehicle()
    {
       cout << "---------------------------------" << endl;
-      cout << "Listing Parked Vehicle" << endl;
+      cout << "Listing Parked Vehicles" << endl;
       cout << "---------------------------------" << endl;
       cout << endl;
    }
