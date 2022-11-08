@@ -236,7 +236,7 @@ namespace sdds {
             loop = 0;
          }
          else {
-            cout << "Invalid response, only (Y)es or (N)o are acceptable, retry:";
+            cout << "Invalid response, only (Y)es or (N)o are acceptable, retry: ";
             loop = 1;
          }
       } while (loop == 1);
