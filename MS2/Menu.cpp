@@ -193,6 +193,10 @@ namespace sdds {
       }
       return selection;
    }
+   int Menu::noOfItems() const
+   {
+      return m_noOfItems;
+   }
    Menu::operator int() const
    {
       return run();

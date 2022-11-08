@@ -9,13 +9,13 @@
 // Revision History
 // -----------------------------------------------------------
 // Name            Date            Reason
-// Alex Chu       Nov 6 2022        Added strlen, strcmp, assign default for len in strcpy
+// Alex Chu       6 Nov 2022        Added strlen, strcmp, assign default for len in strcpy
 /////////////////////////////////////////////////////////////////
 ***********************************************************************/
 #include "Utils.h"
 
 namespace sdds {
-   void strcpy(char* des, const char* src, int len=-1) {
+   void strcpy(char* des, const char* src, int len) {
       int i;
       for (i = 0; src[i] && (len < 0 || i < len); i++) {
          des[i] = src[i];

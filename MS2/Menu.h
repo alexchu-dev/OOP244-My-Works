@@ -7,7 +7,7 @@
 // Revision History
 // -----------------------------------------------------------
 // Name            Date            Reason
-//
+// Alex Chu       7 Nov 2022        Put Menu member functions private and only a few accessible and created a noOfItems() to check menu numbers
 /////////////////////////////////////////////////////////////////
 ***********************************************************************/
 #ifndef SDDS_MENU_H_
@@ -24,7 +24,6 @@ namespace sdds {
       /* Prevent copy and assignment */
       MenuItem(const MenuItem& src) = delete;
       MenuItem& operator=(const MenuItem& src) = delete;
- 
    public:
       friend class Menu;
    };
@@ -33,24 +32,24 @@ namespace sdds {
       MenuItem m_items[MAX_NO_OF_ITEMS];
       int m_noOfItems;
       int m_indentation;
-   public:
-      Menu();
-      Menu(const char* text, int indentation=0);
       operator bool()const;
       bool isEmpty()const;
       void setEmpty();
-      std::ostream& display(std::ostream& coutRef = std::cout)const;
-      std::ostream& indent(std::ostream& coutRef = std::cout)const;
-      Menu& operator=(const char* title);
-      Menu& operator<<(const char* item);
-      void add(const char* item);
-      int run()const;
       operator int()const;
       void clear();
-      
       /* Prevent copy and assignment */
       Menu(const Menu& src) = delete;
       Menu& operator=(const Menu& src) = delete;
+   public:
+      Menu();
+      Menu(const char* text, int indentation=0);
+      Menu& operator=(const char* title);
+      Menu& operator<<(const char* item);
+      void add(const char* item);
+      std::ostream& display(std::ostream& coutRef = std::cout)const;
+      std::ostream& indent(std::ostream& coutRef = std::cout)const;
+      int run()const;
+      int noOfItems()const;
    };
 }
 #endif

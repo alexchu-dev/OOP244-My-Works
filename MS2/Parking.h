@@ -19,12 +19,29 @@ namespace sdds {
       char* m_filename;
       Menu* m_parkingMenu;
       Menu* m_vehicleMenu;
+      void setEmpty();
+      void deallocate();
+      bool loadData();
+      void saveData();
+      bool isEmpty();
+      
+      void parkingStatus();
+      void parkVehicle();
+      void returnVehicle();
+      void listParkedVehicle();
+      void findVehicle();
+      bool closeParking();
+      bool exitParking();
+      bool validate();
+      Parking(const Parking& src) = delete;
+      Parking& operator=(const Parking& src) = delete;
    public:
       Parking();
       Parking(const char* filepath);
       ~Parking();
-      void setEmpty();
-      void deallocate();
+      void setFilename(const char* filepath);
+      int run();
+      int& selectMenu(const Menu* menu);
    };
    
 
