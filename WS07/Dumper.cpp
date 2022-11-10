@@ -71,7 +71,7 @@ namespace sdds
 		VehicleBasic::read(in);
 		cout << "Capacity: ";
       in >> m_capacity;
-		cout << "Cagrgo: ";
+		cout << "Cargo: ";
       in >> m_currentLoad;
 		return in;
 	}
