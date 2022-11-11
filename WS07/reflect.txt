@@ -1,0 +1,15 @@
+/******************************************************************************
+//                    OOP244NAA - WS07 @ Nov 10 2022
+//Full Name  : Alex Chu
+//Student ID#: 153954219
+//Email      : kchu30@myseneca.ca
+//
+//I have done all the coding by myself and only copied the code
+//that my professor provided to complete my workshops and assdignments.
+******************************************************************************/
+The Workshop 7 is about Derived Classes. It is an interesting topic and very object oriented. It is being used everywhere in every thing in our lives, just like any mobile apps and games they are designed in object oriented manner. A basic dungeon game with a dummy character contains common stats, then different characters contain different abilities and skills to cast. Characters can die, respawn, recover with magic potions, which inherits from the basic dummy, and some unique class can self heal.
+The concepts are very logical and not too difficult to understand, however when I was writing the codes it was not very easy and I think proficiency will help in the future. One example was creating the definition of the Dumper constructor which calls the Vehicle constructor. When I was working with the constructors and member function of the Dumper class, I experienced some inaccessible properties from the VehicleBasic class such as m_plate and m_year. Then I tried to place VehicleBasic(plate, year) inside the Dumper constructor but it didn't work and returned me blank space. I did some research on stackoverflow and try with Dumper::Dumper(const char* plate, const int year, const double capacity, const char* address) : VehicleBasic(plate, year) then it worked. The rest was easy and only the first bit we have to practise more and more.
+
+For the MS, it was more challenging because we have to DIY. And when I was playing around with the public and private classes, sometimes I still do not know when to set public and when to set private, so I tried to set them all private first then run it to see if it is not accessible, if there is any inaccessible members I turn them to public.
+Overall they are not too difficult but as I am not a good programmer, it took me longer than the others to finish the codes. Some people found MS2 very easy but still it took me around 1-2 days to finish and I was stuck in "conditional jump" from valgrind until I fixed them.
+
