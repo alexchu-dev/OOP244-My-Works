@@ -7,19 +7,24 @@
 //I have done all the coding by myself and only copied the code
 //that my professor provided to complete my workshops and assdignments.
 ******************************************************************************/
-#ifndef SDDS_RECTANGLE_H_
-#define SDDS_RECTANGLE_H_
-#include "LblShape.h"
-#include <iostream>
+#include "Line.h"
+using namespace std;
 namespace sdds {
-   class Retangle {
-      int m_width = 0;
-      int m_height = 0;
-      Retangle();
-      Retangle(char* label, int width, int height);
-      void getSpecs(std::istream& istr);
-      void draw(std::ostream& ostr);
-   };
-
+   Line::Line() : LblShape()
+   {
+      m_length = 0;
+   }
+   Line::Line(char* label, int length) :LblShape(label) {
+      m_length = length;
+   }
+   void Line::getSpecs(std::istream& istr)
+   {
+      LblShape::getSpecs(istr);
+      istr >> m_length;
+      istr.ignore(256, '\n');
+   }
+   void Line::draw(std::ostream& ostr)
+   {
+      //TO-DO
+   }
 }
-#endif

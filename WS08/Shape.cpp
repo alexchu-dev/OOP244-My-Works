@@ -7,19 +7,17 @@
 //I have done all the coding by myself and only copied the code
 //that my professor provided to complete my workshops and assdignments.
 ******************************************************************************/
-#ifndef SDDS_RECTANGLE_H_
-#define SDDS_RECTANGLE_H_
-#include "LblShape.h"
-#include <iostream>
+#include "Shape.h"
+using namespace std;
 namespace sdds {
-   class Retangle {
-      int m_width = 0;
-      int m_height = 0;
-      Retangle();
-      Retangle(char* label, int width, int height);
-      void getSpecs(std::istream& istr);
-      void draw(std::ostream& ostr);
-   };
-
+   ostream& operator<<(ostream& ostr, const Shape& S)
+   {
+      S.draw(ostr);
+      return ostr;
+   }
+   std::istream& operator>>(std::istream& istr, Shape& S)
+   {
+      S.getSpecs(istr);
+      return istr;
+   }
 }
-#endif
