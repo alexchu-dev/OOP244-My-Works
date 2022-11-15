@@ -23,8 +23,13 @@ namespace sdds {
       istr >> m_length;
       istr.ignore(256, '\n');
    }
-   void Line::draw(std::ostream& ostr)
+   void Line::draw(std::ostream& ostr) const
    {
-      //TO-DO
+      LblShape::draw(ostr);
+      if (m_length > 0 && label() != nullptr) {
+         for (int i = 0; i < m_length; i++) {
+            ostr << label() << "=";
+         }
+      }
    }
 }
