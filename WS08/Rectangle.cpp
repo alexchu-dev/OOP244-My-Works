@@ -8,6 +8,7 @@
 //that my professor provided to complete my workshops and assdignments.
 ******************************************************************************/
 #include "Rectangle.h"
+#include "Utils.h"
 using namespace std;
 namespace sdds {
    Rectangle::Rectangle() : LblShape()

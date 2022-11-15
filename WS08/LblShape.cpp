@@ -9,6 +9,7 @@
 ******************************************************************************/
 #define _CRT_SECURE_NO_WARNINGS
 #include "LblShape.h"
+#include "Utils.h"
 using namespace std;
 namespace sdds {
    const char* LblShape::label() const
