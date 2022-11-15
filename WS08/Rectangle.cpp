@@ -17,7 +17,7 @@ namespace sdds {
    }
    Rectangle::Rectangle(const char* label, int width, int height) :LblShape(label)
    {
-      if (m_height < 3 || m_width < strlen(label)+2) {
+      if (height < 3 || width < strlen(label)+2) {
          m_width = 0;
          m_height = 0;
       }
@@ -37,9 +37,31 @@ namespace sdds {
    void Rectangle::draw(std::ostream& ostr) const
    {
       if (m_width > 0 && m_height > 0 && label() != nullptr) {
-         ostr << label() << "+";
+         //First line
+         ostr << "+";
          for (int i = 0; i < m_width-2; i++) {
-            ostr << label() << "-";
+            ostr << "-";
+         }
+         ostr << "+" << endl;
+         //Second line
+         ostr << "|";
+         ostr.width(m_width - 2);
+         ostr.fill(' ');
+         ostr.setf(ios::left);
+         ostr << label();
+         ostr.unsetf(ios::left);
+         ostr << "|"<< endl;
+         //third line and so
+         for (int i = 0; i < (m_height - 3);i++) {
+            ostr << "|";
+            ostr.width(m_width - 1);
+            ostr.fill(' ');
+            ostr << "|" << endl;
+         }
+         //Last line
+         ostr << "+";
+         for (int i = 0; i < m_width - 2; i++) {
+            ostr << "-";
          }
          ostr << "+" << endl;
       }

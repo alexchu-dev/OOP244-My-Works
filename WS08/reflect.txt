@@ -1,0 +1,18 @@
+/******************************************************************************
+//                    OOP244NAA - WS08 @ Nov 15 2022
+//Full Name  : Alex Chu
+//Student ID#: 153954219
+//Email      : kchu30@myseneca.ca
+//
+//I have done all the coding by myself and only copied the code
+//that my professor provided to complete my workshops and assdignments.
+******************************************************************************/
+Work shop 8 like its name "Abstract" is kind of abstract, but I think by coding more and mroe when we get used to it, it will be like how we learnt about pointers, nullptr and namespace.
+
+The guidance was complete, I only have to do it step by step, created Shape module to declare the interface of pure virtual functions draw, getSpecs and vitrual destructor ~Shape as preparation, then create other concrete classes like LblShape, Line and Rectangle one by one.
+
+However, when it says it is to "invoke the xxxxx of the base class" it was confusing because I did not know if that would mean putting the :LblShape(argument) when I was defining the functions.
+
+I have not started Milestone 3 yet, but during the lab review by professor he says the milestone 3.1 is easy. Discussion among students also claim that MS3.1 is similar to WS08 in which we might reuse some codes.
+
+There are nothing much for me to reflect in WS08, and I am going to spend some time to start working on MS3 now.

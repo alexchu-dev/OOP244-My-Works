@@ -26,10 +26,11 @@ namespace sdds {
    void Line::draw(std::ostream& ostr) const
    {
       if (m_length > 0 && label() != nullptr) {
+         ostr.width(m_length);
+         ostr.fill('=');
+         ostr.setf(ios::left);
          ostr << label();
-         for (int i = 0; i < m_length; i++) {
-            ostr << "=";
-         }
+         ostr.setf(ios::left);
       }
    }
 }
