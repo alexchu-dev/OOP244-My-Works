@@ -17,7 +17,7 @@ namespace sdds
       int m_length = 0;
    public:
       Line();
-      Line(char* label, int length);
+      Line(const char* label, int length);
       void getSpecs(std::istream& istr);
       void draw(std::ostream& ostr) const;
    };

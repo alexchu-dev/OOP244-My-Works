@@ -14,7 +14,7 @@ namespace sdds {
    {
       m_length = 0;
    }
-   Line::Line(char* label, int length) :LblShape(label) {
+   Line::Line(const char* label, int length) :LblShape(label) {
       m_length = length;
    }
    void Line::getSpecs(std::istream& istr)
@@ -25,10 +25,10 @@ namespace sdds {
    }
    void Line::draw(std::ostream& ostr) const
    {
-      LblShape::draw(ostr);
       if (m_length > 0 && label() != nullptr) {
+         ostr << label();
          for (int i = 0; i < m_length; i++) {
-            ostr << label() << "=";
+            ostr << "=";
          }
       }
    }

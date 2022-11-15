@@ -12,12 +12,12 @@
 #include "LblShape.h"
 #include <iostream>
 namespace sdds {
-   class Retangle : public LblShape {
+   class Rectangle : public LblShape {
       int m_width = 0;
       int m_height = 0;
    public:
-      Retangle();
-      Retangle(char* label, int width, int height);
+      Rectangle();
+      Rectangle(const char* label, int width, int height);
       void getSpecs(std::istream& istr);
       void draw(std::ostream& ostr) const;
    };

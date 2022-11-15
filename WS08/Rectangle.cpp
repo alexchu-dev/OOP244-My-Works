@@ -10,12 +10,12 @@
 #include "Rectangle.h"
 using namespace std;
 namespace sdds {
-   Retangle::Retangle() : LblShape()
+   Rectangle::Rectangle() : LblShape()
    {
       m_width = 0;
       m_height = 0;
    }
-   Retangle::Retangle(char* label, int width, int height) :LblShape(label)
+   Rectangle::Rectangle(const char* label, int width, int height) :LblShape(label)
    {
       if (m_height < 3 || m_width < strlen(label)+2) {
          m_width = 0;
@@ -26,7 +26,7 @@ namespace sdds {
          m_height = height;
       }
    }
-   void Retangle::getSpecs(std::istream& istr)
+   void Rectangle::getSpecs(std::istream& istr)
    {
       LblShape::getSpecs(istr);
       istr >> m_width;
@@ -34,9 +34,8 @@ namespace sdds {
       istr >> m_height;
       istr.ignore(256, '\n');
    }
-   void Retangle::draw(std::ostream& ostr) const
+   void Rectangle::draw(std::ostream& ostr) const
    {
-      LblShape::draw(ostr);
       if (m_width > 0 && m_height > 0 && label() != nullptr) {
          ostr << label() << "+";
          for (int i = 0; i < m_width-2; i++) {
