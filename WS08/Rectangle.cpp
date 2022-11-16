@@ -64,7 +64,7 @@ namespace sdds {
          for (int i = 0; i < m_width - 2; i++) {
             ostr << "-";
          }
-         ostr << "+" << endl;
+         ostr << "+";
       }
    }
 }
