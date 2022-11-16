@@ -35,6 +35,7 @@ namespace sdds {
       char label[256];
       istr.get(label, 256, ',');
       istr.ignore(256, ',');
+      delete[] m_label;
       m_label = new char[strlen(label) + 1];
       strcpy(m_label, label);
    }
