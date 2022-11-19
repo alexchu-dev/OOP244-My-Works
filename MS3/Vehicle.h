@@ -25,6 +25,7 @@ namespace sdds {
       ~Vehicle();
       Vehicle(const Vehicle& v);
       Vehicle& operator=(const Vehicle& v);
+      char* operator=(const char* plate);
       void setEmpty();
       bool isEmpty()const;
       const char* getLicensePlate()const;
@@ -32,6 +33,11 @@ namespace sdds {
       void setMakeModel(const char* makeModel);
       int getParkingSpot()const;
       void setParkingSpot(const int parkingSpot);
+      bool operator==(const char* plate)const;
+      std::istream& read(std::istream& istr = std::cin);
+      virtual std::ostream& writeType(std::ostream& ostr = std::cout)const;
+      std::ostream& write(std::ostream& ostr = std::cout)const;
    };
+   bool operator==(const Vehicle& a, const Vehicle& b);
 }
 #endif
