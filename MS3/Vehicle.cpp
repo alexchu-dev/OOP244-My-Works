@@ -11,7 +11,9 @@
 /////////////////////////////////////////////////////////////////
 ***********************************************************************/
 #include <iostream>
+#include <cctype>
 #include "Vehicle.h"
+#include "Utils.h"
 using namespace std;
 namespace sdds {
    Vehicle::Vehicle()
@@ -20,10 +22,12 @@ namespace sdds {
    }
    Vehicle::Vehicle(const char* plate, const char* makeModel)
    {
-      setEmpty();
+      setEmpty(); //set to invalid empty state if plate and makeModel are null or invalid
       m_parkingSpot = 0;
-      strcpy(m_plate, plate);
-      m_makeModel = makeModel;
+      if (plate != nullptr && plate[0] != '\0' && makeModel != nullptr && makeModel[0] != '\0') {
+         strcpy(m_plate, plate);
+         setMakeModel(makeModel);
+      }
    }
    Vehicle::~Vehicle()
    {
@@ -38,37 +42,82 @@ namespace sdds {
    {
       if (this != &v) {
          //Shallow copy fist
-         strcpy(m_plate, v.m_plate);
-         m_parkingSpot = v.m_parkingSpot;
-         //DMA starts, copy resource data
-         delete[] m_makeModel;
-         if (v.m_makeModel != nullptr) {
-            m_makeModel = new char[strlen(v.m_makeModel) + 1];
-            strcpy(m_makeModel, v.m_makeModel);
+         if (v.m_plate != nullptr) {
+            strcpy(m_plate, v.m_plate);
          }
-         else {
-            m_makeModel = nullptr;
-         }
-        
+         setParkingSpot(v.m_parkingSpot);
+         //DMA starts, call setMakeModel to copy resource data
+         setMakeModel(v.m_makeModel);        
       }
       return *this;
-   }
-   char* Vehicle::operator=(const char* plate)
-   {
-      delete[] m_makeModel;
-      if (plate != nullptr) {
-         m_makeModel = new char[strlen(plate) + 1];
-         strcpy(m_makeModel, plate);
-      }
-      else {
-         m_makeModel = nullptr;
-      }
-      return m_makeModel;
    }
    void Vehicle::setEmpty()
    {
       m_plate[0] = '\0';
       m_makeModel = nullptr;
-      m_parkingSpot = 0;
+      m_parkingSpot = 0; //NOTE: or -1?
+   }
+   bool Vehicle::isEmpty() const
+   {
+      return (m_makeModel == nullptr || m_plate[0] == '\0');
+   }
+   const char* Vehicle::getLicensePlate() const
+   {
+      return m_plate;
+   }
+   const char* Vehicle::getMakeModel() const
+   {
+      return m_makeModel;
+   }
+   char* Vehicle::setMakeModel(const char* makeModel)
+   {
+      //allocate new dynamic memory if needed
+      delete[] m_makeModel;
+      if (makeModel!=nullptr) {
+         m_makeModel = new char[strlen(makeModel) + 1];
+         strcpy(m_makeModel, makeModel);
+      }
+      else {
+         setEmpty();
+      }
+      return m_makeModel;
+   }
+   int Vehicle::getParkingSpot() const
+   {
+      return m_parkingSpot;
+   }
+   void Vehicle::setParkingSpot(const int parkingSpot)
+   {
+      if (parkingSpot >= 0)
+      {
+         m_parkingSpot = parkingSpot;
+      }
+      else
+      {
+         setEmpty();
+      }
+   }
+   bool Vehicle::operator==(const char* plate) const
+   {
+      //int i;
+      //for (i = 0; m_plate[i] && plate[i] && ((m_plate[i] == plate[i]) || (m_plate[i] > 64 && plate[i] > 64 && (m_plate[i] - plate[i] == 32 || m_plate[i] - plate[i] == -32))); i++);
+      //return !(m_plate[i] - plate[i]);
+
+      //new method using toupper with cctype
+      char temp_plate[9];
+      for (int i = 0; i < 8; i++)
+      {
+         temp_plate[i] = toupper(plate[i]);
+      }
+      return !strcmp(m_plate, temp_plate);
+   }
+   std::istream& Vehicle::read(std::istream& istr)
+   {
+      // TODO: insert return statement here
+   }
+   bool operator==(const Vehicle& a, const Vehicle& b)
+   {
+      //Note: Check if it can use the other operator overloading
+      return a.getLicensePlate() == b.getLicensePlate();
    }
 }

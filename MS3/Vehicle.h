@@ -25,12 +25,11 @@ namespace sdds {
       ~Vehicle();
       Vehicle(const Vehicle& v);
       Vehicle& operator=(const Vehicle& v);
-      char* operator=(const char* plate);
       void setEmpty();
       bool isEmpty()const;
       const char* getLicensePlate()const;
       const char* getMakeModel()const;
-      void setMakeModel(const char* makeModel);
+      char* setMakeModel(const char* makeModel);
       int getParkingSpot()const;
       void setParkingSpot(const int parkingSpot);
       bool operator==(const char* plate)const;
