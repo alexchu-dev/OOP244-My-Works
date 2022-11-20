@@ -28,12 +28,10 @@ namespace sdds {
    }
    std::ostream& operator<<(std::ostream& ostr, const ReadWritable& RW)
    {
-      RW.write(ostr);
-      return ostr;
+      return RW.write(ostr);
    }
    std::istream& operator>>(std::istream& istr, ReadWritable& RW)
    {
-      RW.read(istr);
-      return istr;
+      return RW.read(istr);
    }
 }

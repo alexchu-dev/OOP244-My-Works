@@ -2,11 +2,12 @@
 Final Project Milestone 3.2
 Module: ReadWritable
 Filename: VehicleTester.cpp
-Version 1.0
+Version 1.1
 Author	Fardad Soleimanloo
 Revision History
 -----------------------------------------------------------
 Date      Reason
+22/11/17  Printed "T," in writeType of Truck (line 22)
 -----------------------------------------------------------*/
 
 
@@ -18,7 +19,7 @@ class Truck : public Vehicle {
 public:
    Truck() {};
    Truck(const char* lp, const char* mm) :Vehicle(lp, mm) {};
-   ostream& writeType(ostream& ostr)const { return ostr; };
+   ostream& writeType(ostream& ostr)const { return ostr << "T,"; };
 };
 void TestValidations();
 void TestOperatorEqualEqual( Truck A, Truck B);

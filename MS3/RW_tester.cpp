@@ -2,11 +2,12 @@
 Final Project Milestone 3.1
 Module: N/A
 Filename: RW_Tester.cpp
-Version 1.0
+Version 1.1
 Author	Fardad Soleimanloo
 Revision History
 -----------------------------------------------------------
 Date      Reason
+22/11/17  removed space from bos entry
 -----------------------------------------------------------*/
 
 #include <iostream>
@@ -122,8 +123,8 @@ void test3() {
    Box B;
    cout << "Testing operator>> overload (pass 1): " << endl;
    cout << "Enter the following: " << endl;
-   cout << "4 <ENTER>" << endl;
-   cout << "5 <ENTER>" << endl;
+   cout << "4<ENTER>" << endl;
+   cout << "5<ENTER>" << endl;
    cin >> B;
    cout << B << endl;
 }

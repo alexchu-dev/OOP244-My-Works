@@ -1,7 +1,7 @@
 /***********************************************************************
 // Utils Module
 // File  utils.cpp
-// Version 0.11
+// Version 0.12
 // Date  3 Nov 2022
 // Author   Alex Chu
 // Description
@@ -10,6 +10,7 @@
 // -----------------------------------------------------------
 // Name            Date            Reason
 // Alex Chu       6 Nov 2022        Added strlen, strcmp, assign default for len in strcpy
+// Alex Chu       20 Nov 2022       Added toUpper to avoid including the whole cctype
 /////////////////////////////////////////////////////////////////
 ***********************************************************************/
 #include "Utils.h"
@@ -33,5 +34,10 @@ namespace sdds {
       int i;
       for (i = 0; s1[i] && s2[i] && s1[i] == s2[i]; i++);
       return s1[i] - s2[i];
+   }
+   void toUpper(char& ch) {
+      if (ch >= 'a' && ch <= 'z') {
+         ch -= 32;
+      }
    }
 }

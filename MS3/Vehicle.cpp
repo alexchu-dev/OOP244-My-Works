@@ -11,7 +11,6 @@
 /////////////////////////////////////////////////////////////////
 ***********************************************************************/
 #include <iostream>
-#include <cctype>
 #include "Vehicle.h"
 #include "Utils.h"
 using namespace std;
@@ -54,6 +53,7 @@ namespace sdds {
    void Vehicle::setEmpty()
    {
       m_plate[0] = '\0';
+      delete[] m_makeModel;
       m_makeModel = nullptr;
       m_parkingSpot = 0; //NOTE: or -1?
    }
@@ -97,7 +97,76 @@ namespace sdds {
          setEmpty();
       }
    }
-   bool Vehicle::operator==(const char* plate) const
+   std::istream& Vehicle::read(std::istream& istr)
+   {
+      char temp_makeModel[61];
+      if (isCsv()) {
+         istr >> m_parkingSpot;
+         istr.ignore();
+         istr.getline(m_plate, 9, ',');
+         istr.ignore(1000, '\n'); //TODO: probably needs debug
+         for (int i = 0; i < 8; i++)
+         {
+            toUpper(m_plate[i]);
+         }
+         istr.getline(temp_makeModel, 61, ',');
+         istr.ignore(1000, '\n'); //TODO: probably needs debug
+         setMakeModel(temp_makeModel);
+      }
+      else {
+         cout << "Enter Licence Plate Number: ";
+         istr.getline(m_plate, 9, '\n');
+         while (cin.fail()) {
+            cout << "Invalid Licence Plate, try again: ";
+            istr.clear();
+            istr.ignore(1000, '\n');
+            istr.getline(m_plate, 9, '\n');
+         }
+         for (int i = 0; i < 8; i++)
+         {
+            toUpper(m_plate[i]);
+         }
+         cout << "Enter Make and Model: ";
+         istr.getline(temp_makeModel, 61, '\n');
+         while (cin.fail()||strlen(temp_makeModel)<=2) {
+            cout << "Invalid Make and model, try again: ";
+            istr.clear();
+            istr.ignore(1000, '\n');
+            istr.getline(temp_makeModel, 61, '\n');
+         }
+         
+      }
+      if (cin.fail())
+      {
+         setEmpty();
+      }
+      return istr;
+   }
+   std::ostream& Vehicle::write(std::ostream& ostr) const
+   {
+      if (isEmpty()) {
+         ostr << "Invalid Vehicle Object" << endl;
+      }
+      else {
+         writeType(ostr);
+         if (isCsv()) {
+            ostr << m_parkingSpot << "," << m_plate << "," << m_makeModel << ",";
+         }
+         else {
+            ostr << "Parking Spot Number: ";
+            if (m_parkingSpot == 0) {
+               ostr << "N/A" << endl;
+            }
+            else {
+               ostr << m_parkingSpot << endl;
+            }
+            ostr << "Licence Plate: " << m_plate << endl;
+            ostr << "Make and Model: " << m_makeModel << endl;
+         }
+      }
+      return ostr;
+   }
+   bool operator==(const Vehicle& a, const char* plate)
    {
       //int i;
       //for (i = 0; m_plate[i] && plate[i] && ((m_plate[i] == plate[i]) || (m_plate[i] > 64 && plate[i] > 64 && (m_plate[i] - plate[i] == 32 || m_plate[i] - plate[i] == -32))); i++);
@@ -105,15 +174,12 @@ namespace sdds {
 
       //new method using toupper with cctype
       char temp_plate[9];
+      strcpy(temp_plate, plate);
       for (int i = 0; i < 8; i++)
       {
-         temp_plate[i] = toupper(plate[i]);
+         toUpper(temp_plate[i]);
       }
-      return !strcmp(m_plate, temp_plate);
-   }
-   std::istream& Vehicle::read(std::istream& istr)
-   {
-      // TODO: insert return statement here
+      return !strcmp(a.getLicensePlate(), temp_plate);
    }
    bool operator==(const Vehicle& a, const Vehicle& b)
    {
