@@ -109,14 +109,14 @@ namespace sdds {
          setMakeModel(temp_makeModel);
       }
       else {
-         cout << "Enter Licence Plate Number: ";
+         cout << "Enter License Plate Number: ";
          do {
             if (istr.fail()) {
                istr.clear();
                istr.ignore(1000, '\n');
             }
             istr.getline(m_plate, 9, '\n');
-            if (istr.fail()) cout << "Invalid Licence Plate, try again: ";
+            if (istr.fail()) cout << "Invalid License Plate, try again: ";
          } while (istr.fail());
          toUpper(m_plate);
 
@@ -176,7 +176,7 @@ namespace sdds {
             else {
                ostr << m_parkingSpot << endl;
             }
-            ostr << "Licence Plate: " << m_plate << endl;
+            ostr << "License Plate: " << m_plate << endl;
             ostr << "Make and Model: " << m_makeModel << endl;
          }
       }
