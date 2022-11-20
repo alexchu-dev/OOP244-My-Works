@@ -202,7 +202,7 @@ namespace sdds {
       char temp_plate2[9];
       strcpy(temp_plate1, m_plate);
       toUpper(temp_plate1);
-      strcpy(temp_plate2, b.getLicensePlate());
+      strcpy(temp_plate2, b.m_plate);
       toUpper(temp_plate2);
       return !strcmp(temp_plate1, temp_plate2);
    }
