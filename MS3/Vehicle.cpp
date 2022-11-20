@@ -182,23 +182,25 @@ namespace sdds {
       }
       return ostr;
    }
-   bool operator==(const Vehicle& a, const char* plate)
+
+   bool Vehicle::operator==(const char* plate) const
    {
       //Using toUpper. In case if the assigned value of the Vehicle "a" or the input plate sttring is not in upper case, two strings are to be copied to temp values first then compare.
       char temp_plate1[9];
       char temp_plate2[9];
       strcpy(temp_plate1, plate);
       toUpper(temp_plate1);
-      strcpy(temp_plate2, a.getLicensePlate());
+      strcpy(temp_plate2, m_plate);
       toUpper(temp_plate2);
       return !strcmp(temp_plate1, temp_plate2);
    }
-   bool operator==(const Vehicle& a, const Vehicle& b)
+
+   bool Vehicle::operator==(const Vehicle& b) const
    {
       //Note: Check if it can use the other operator overloading
       char temp_plate1[9];
       char temp_plate2[9];
-      strcpy(temp_plate1, a.getLicensePlate());
+      strcpy(temp_plate1, m_plate);
       toUpper(temp_plate1);
       strcpy(temp_plate2, b.getLicensePlate());
       toUpper(temp_plate2);

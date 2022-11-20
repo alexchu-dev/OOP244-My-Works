@@ -23,21 +23,22 @@ namespace sdds {
       void setEmpty();
       bool isEmpty()const;
       char* setMakeModel(const char* makeModel);
+      const char* getLicensePlate()const;
+      const char* getMakeModel()const;
    public:
       Vehicle();
       Vehicle(const char* plate, const char* makeModel);
       ~Vehicle();
       Vehicle(const Vehicle& v);
       Vehicle& operator=(const Vehicle& v);
-      const char* getLicensePlate()const;
-      const char* getMakeModel()const;
       int getParkingSpot()const;
       void setParkingSpot(const int parkingSpot);
       std::istream& read(std::istream& istr = std::cin);
       virtual std::ostream& writeType(std::ostream& ostr = std::cout)const=0;
       std::ostream& write(std::ostream& ostr = std::cout)const;
+      bool operator==(const char* plate)const;
+      bool operator==(const Vehicle& b)const;
    };
-   bool operator==(const Vehicle& a, const char* plate);
-   bool operator==(const Vehicle& a, const Vehicle& b);
+   
 }
 #endif
