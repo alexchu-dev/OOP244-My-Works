@@ -186,8 +186,8 @@ namespace sdds {
    bool Vehicle::operator==(const char* plate) const
    {
       //Using toUpper. In case if the assigned value of the Vehicle "a" or the input plate sttring is not in upper case, two strings are to be copied to temp values first then compare.
-      char temp_plate1[9];
-      char temp_plate2[9];
+      char temp_plate1[9] = { '\0' };
+      char temp_plate2[9] = { '\0' };
       strcpy(temp_plate1, plate);
       toUpper(temp_plate1);
       strcpy(temp_plate2, m_plate);
@@ -198,8 +198,8 @@ namespace sdds {
    bool Vehicle::operator==(const Vehicle& b) const
    {
       //Note: Check if it can use the other operator overloading
-      char temp_plate1[9];
-      char temp_plate2[9];
+      char temp_plate1[9] = { '\0' };
+      char temp_plate2[9] = { '\0' };
       strcpy(temp_plate1, m_plate);
       toUpper(temp_plate1);
       strcpy(temp_plate2, b.m_plate);
