@@ -35,9 +35,12 @@ namespace sdds {
       for (i = 0; s1[i] && s2[i] && s1[i] == s2[i]; i++);
       return s1[i] - s2[i];
    }
-   void toUpper(char& ch) {
-      if (ch >= 'a' && ch <= 'z') {
-         ch -= 32;
-      }
+   void toUpper(char* ch) {
+      for (int i = 0; i < 8; i++)
+      {
+         if (ch[i] >= 'a' && ch[i] <= 'z') {
+            ch[i] -= 32;
+         }
+      }      
    }
 }

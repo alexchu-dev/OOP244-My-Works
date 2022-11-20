@@ -130,10 +130,10 @@
     <None Include="boxes.csv" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="ReadWritable.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="Vehicle.cpp" />
-    <ClCompile Include="VehicleTester.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ReadWritable.h" />

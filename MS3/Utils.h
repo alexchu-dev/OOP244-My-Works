@@ -20,6 +20,6 @@ namespace sdds {
    void strcpy(char* des, const char* src, int len = -1);
    int strlen(const char* str);
    int strcmp(const char* s1, const char* s2);
-   void toUpper(char& ch);
+   void toUpper(char* ch);
 }
 #endif // !

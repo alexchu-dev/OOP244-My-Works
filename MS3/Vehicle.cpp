@@ -23,7 +23,7 @@ namespace sdds {
    {
       setEmpty(); //set to invalid empty state if plate and makeModel are null or invalid
       m_parkingSpot = 0;
-      if (plate != nullptr && plate[0] != '\0' && makeModel != nullptr && makeModel[0] != '\0') {
+      if (plate != nullptr && plate[0] != '\0' && strlen(plate) <9 && makeModel != nullptr && makeModel[0] != '\0' && strlen(makeModel) >= 2) {
          strcpy(m_plate, plate);
          setMakeModel(makeModel);
       }
@@ -104,39 +104,55 @@ namespace sdds {
          istr >> m_parkingSpot;
          istr.ignore();
          istr.getline(m_plate, 9, ',');
-         istr.ignore(1000, '\n'); //TODO: probably needs debug
-         for (int i = 0; i < 8; i++)
-         {
-            toUpper(m_plate[i]);
-         }
+         toUpper(m_plate);
          istr.getline(temp_makeModel, 61, ',');
-         istr.ignore(1000, '\n'); //TODO: probably needs debug
          setMakeModel(temp_makeModel);
       }
       else {
          cout << "Enter Licence Plate Number: ";
-         istr.getline(m_plate, 9, '\n');
-         while (cin.fail()) {
-            cout << "Invalid Licence Plate, try again: ";
-            istr.clear();
-            istr.ignore(1000, '\n');
+         do {
+            if (istr.fail()) {
+               istr.clear();
+               istr.ignore(1000, '\n');
+            }
             istr.getline(m_plate, 9, '\n');
-         }
-         for (int i = 0; i < 8; i++)
-         {
-            toUpper(m_plate[i]);
-         }
+            if (istr.fail()) cout << "Invalid Licence Plate, try again: ";
+         } while (istr.fail());
+         toUpper(m_plate);
+
          cout << "Enter Make and Model: ";
-         istr.getline(temp_makeModel, 61, '\n');
-         while (cin.fail()||strlen(temp_makeModel)<=2) {
-            cout << "Invalid Make and model, try again: ";
-            istr.clear();
-            istr.ignore(1000, '\n');
+         bool minLen;
+         do {
+            if (istr.fail()) {
+               istr.clear();
+               istr.ignore(1000, '\n');
+            }
             istr.getline(temp_makeModel, 61, '\n');
-         }
-         
+            minLen = strlen(temp_makeModel) < 2;
+            if (istr.fail() || minLen) cout << "Invalid Make and model, try again: ";
+         } while (istr.fail() || minLen);
+         setMakeModel(temp_makeModel);
+
+         //cout << "Enter Licence Plate Number: ";
+         //istr.getline(m_plate, 9, '\n');
+         //while (istr.fail()) {
+         //   cout << "Invalid Licence Plate, try again: ";
+         //   istr.clear();
+         //   istr.ignore(1000, '\n');
+         //   istr.getline(m_plate, 9, '\n');
+         //}
+         //toUpper(m_plate);
+         //cout << "Enter Make and Model: ";
+         //istr.getline(temp_makeModel, 61, '\n');
+         //while (istr.fail()||strlen(temp_makeModel)<2) {
+         //   cout << "Invalid Make and model, try again: ";
+         //   istr.clear();
+         //   istr.ignore(1000, '\n');
+         //   istr.getline(temp_makeModel, 61, '\n');
+         //}
+         //setMakeModel(temp_makeModel);
       }
-      if (cin.fail())
+      if (istr.fail())
       {
          setEmpty();
       }
@@ -168,22 +184,24 @@ namespace sdds {
    }
    bool operator==(const Vehicle& a, const char* plate)
    {
-      //int i;
-      //for (i = 0; m_plate[i] && plate[i] && ((m_plate[i] == plate[i]) || (m_plate[i] > 64 && plate[i] > 64 && (m_plate[i] - plate[i] == 32 || m_plate[i] - plate[i] == -32))); i++);
-      //return !(m_plate[i] - plate[i]);
-
-      //new method using toupper with cctype
-      char temp_plate[9];
-      strcpy(temp_plate, plate);
-      for (int i = 0; i < 8; i++)
-      {
-         toUpper(temp_plate[i]);
-      }
-      return !strcmp(a.getLicensePlate(), temp_plate);
+      //Using toUpper. In case if the assigned value of the Vehicle "a" or the input plate sttring is not in upper case, two strings are to be copied to temp values first then compare.
+      char temp_plate1[9];
+      char temp_plate2[9];
+      strcpy(temp_plate1, plate);
+      toUpper(temp_plate1);
+      strcpy(temp_plate2, a.getLicensePlate());
+      toUpper(temp_plate2);
+      return !strcmp(temp_plate1, temp_plate2);
    }
    bool operator==(const Vehicle& a, const Vehicle& b)
    {
       //Note: Check if it can use the other operator overloading
-      return a.getLicensePlate() == b.getLicensePlate();
+      char temp_plate1[9];
+      char temp_plate2[9];
+      strcpy(temp_plate1, a.getLicensePlate());
+      toUpper(temp_plate1);
+      strcpy(temp_plate2, b.getLicensePlate());
+      toUpper(temp_plate2);
+      return !strcmp(temp_plate1, temp_plate2);
    }
 }
