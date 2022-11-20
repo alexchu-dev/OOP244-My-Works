@@ -36,11 +36,18 @@ namespace sdds {
       return s1[i] - s2[i];
    }
    char* toUpper(char* ch) {
-      for (int i = 0; i < 8; i++)
-      {
-         if (ch[i] >= 'a' && ch[i] <= 'z') {
-            ch[i] -= 32;
+      if (ch!=nullptr){
+         for (int i = 0; i < 8; i++)
+         {
+            if (ch[i] >= 'a' && ch[i] <= 'z') {
+               ch[i] -= 32;
+            }
+            else
+               ch[i] = ch[i];
          }
+      }
+      else {
+         ch = nullptr;
       }
       return ch;
    }
