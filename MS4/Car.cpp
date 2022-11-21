@@ -17,6 +17,6 @@ using namespace std;
 namespace sdds {
    Car::Car(const char* plate, const char* makeModel)
    {
-      setEmpty();
+      Vehicle::setEmpty();
    }
 }

@@ -15,12 +15,7 @@
 #include "Utils.h"
 using namespace std;
 namespace sdds {
-   //Default base class constructor which inherits to Car and Motorcycle as well.
-   Vehicle::Vehicle()
-   {
-      setEmpty();
-   }
-   //Vehicle(2 args) constructor. It does not inherit to derived classes.
+   //Combined Vehicle constructors with no arg and 2 args
    Vehicle::Vehicle(const char* plate, const char* makeModel)
    {
       setEmpty(); //set to invalid empty state if plate and makeModel are null or invalid

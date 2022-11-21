@@ -26,8 +26,7 @@ namespace sdds {
       const char* getLicensePlate()const;
       const char* getMakeModel()const;
    public:
-      Vehicle();
-      Vehicle(const char* plate, const char* makeModel);
+      Vehicle(const char* plate="", const char* makeModel="");
       ~Vehicle();
       Vehicle(const Vehicle& v);
       Vehicle& operator=(const Vehicle& v);
