@@ -1,7 +1,7 @@
 /***********************************************************************
-// ReadWritable Module
-// File  ReadWritable.cpp
-// Version 0.11
+// ReadWritable Module (Function descriptions in cpp file)
+// File  Vehicle.h
+// Version 0.12
 // Date  16 Nov 2022
 // Author   Alex Chu
 // Revision History
@@ -31,13 +31,13 @@ namespace sdds {
       ~Vehicle();
       Vehicle(const Vehicle& v);
       Vehicle& operator=(const Vehicle& v);
+      bool operator==(const char* plate)const;
+      bool operator==(const Vehicle& b)const;
       int getParkingSpot()const;
       void setParkingSpot(const int parkingSpot);
       std::istream& read(std::istream& istr = std::cin);
       virtual std::ostream& writeType(std::ostream& ostr = std::cout)const=0;
       std::ostream& write(std::ostream& ostr = std::cout)const;
-      bool operator==(const char* plate)const;
-      bool operator==(const Vehicle& b)const;
    };
    
 }
