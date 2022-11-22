@@ -49,7 +49,7 @@ namespace sdds {
          cout << endl;
          cout << "Motorcycle information entry" << endl;
          Vehicle::read(istr);
-         cout << "Does the Motorcycle have a sidecar? (Y)es/(N)o: ";
+         cout << "Does the Motorcycle have a side car? (Y)es/(N)o: ";
          m_sideCar = yesno();
       }
       return istr;
