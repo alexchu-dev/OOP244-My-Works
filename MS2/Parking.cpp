@@ -213,27 +213,4 @@ namespace sdds {
       cout << "Are you sure? (Y)es/(N)o: ";
       return yesno();
    }
-   bool Parking::yesno()
-   {
-      char selection[256];
-      int loop = 0;
-      bool res;
-      do {
-         cin.ignore();
-         cin.get(selection, 256);
-         if (!strcmp(selection, "y") || !strcmp(selection, "Y")) {
-            res = true;
-            loop = 0;
-         }
-         else if (!strcmp(selection, "n") || !strcmp(selection, "N")) {
-            res = false;
-            loop = 0;
-         }
-         else {
-            cout << "Invalid response, only (Y)es or (N)o are acceptable, retry: ";
-            loop = 1;
-         }
-      } while (loop == 1);
-      return res;
-   }
 }

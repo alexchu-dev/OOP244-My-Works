@@ -1,13 +1,13 @@
 /***********************************************************************
 // ReadWritable Module
 // File  ReadWritable.h
-// Version 0.11
+// Version 0.12
 // Date  16 Nov 2022
 // Author   Alex Chu
 // Revision History
 // -----------------------------------------------------------
 // Name            Date            Reason
-// 
+// Alex Chu        22 Nov 2022     Change ReadWritable attribute naming to bool m_csv
 /////////////////////////////////////////////////////////////////
 ***********************************************************************/
 #ifndef SDDS_READWRITABLE_H_
@@ -15,7 +15,7 @@
 #include <iostream>
 namespace sdds {
    class ReadWritable {
-      bool m_flag;
+      bool m_csv;
    public:
       ReadWritable();
       virtual ~ReadWritable() {};

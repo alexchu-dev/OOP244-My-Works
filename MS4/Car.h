@@ -16,9 +16,15 @@
 #include "Vehicle.h"
 namespace sdds {
    class Car : public Vehicle {
-      bool carWash = 0;
+      bool m_carWash = 0;
    public:
-      Car(const char* plate, const char* makeModel);
+      Car(const char* plate = "", const char* makeModel = "") : Vehicle(plate, makeModel) {};
+      ~Car() {};
+      Car(const Car& c);
+      Car& operator=(const Car& c);
+      std::ostream& writeType(std::ostream& ostr = std::cout)const;
+      std::istream& read(std::istream& istr = std::cin);
+      std::ostream& write(std::ostream& ostr = std::cout)const;
    };
 }
 #endif // !SDDS_CAR_H_

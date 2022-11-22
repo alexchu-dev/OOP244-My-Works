@@ -24,7 +24,6 @@ namespace sdds {
          setMakeModel(makeModel);
       }
    }
-
    //Rules of three below - Copy Constructor, Copy Assignment Operator & Destructor
    //Default base class Destructor which inherits to Car and Motorcycle as well.
    Vehicle::~Vehicle()
@@ -34,7 +33,6 @@ namespace sdds {
    //Copy Constructor of Vehicle class, it relies on the Copy Assignment Operator
    Vehicle::Vehicle(const Vehicle& v)
    {
-      m_makeModel = nullptr;
       *this = v; //calls copy assignment operator
    }
    //Copy Assignment Operator
@@ -46,6 +44,7 @@ namespace sdds {
             strcpy(m_plate, v.m_plate);
          }
          setParkingSpot(v.m_parkingSpot);
+         setCsv(v.isCsv());
          //DMA starts, call setMakeModel to copy resource data
          setMakeModel(v.m_makeModel);        
       }

@@ -32,7 +32,6 @@ namespace sdds {
       void findVehicle();
       bool closeParking();
       bool exitParking();
-      bool yesno();
       Parking(const Parking& src) = delete;
       Parking& operator=(const Parking& src) = delete;
    public:
