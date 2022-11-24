@@ -16,6 +16,11 @@ namespace sdds {
       char* m_title = nullptr;
    public:
       HtmlText() {};
+      HtmlText(char* title);
+      ~HtmlText();
+      HtmlText(const HtmlText& src);
+      HtmlText& operator=(const HtmlText& src);
+      std::ostream& write(std::ostream& ostr = std::cout)const;
    };
 }
 #endif // !SDDS_HTMLTEXT_H_

@@ -133,8 +133,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HtmlText.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Text.cpp" />
-    <ClCompile Include="TextTester.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>

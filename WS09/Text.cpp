@@ -9,9 +9,9 @@
 ******************************************************************************/
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
-using namespace std;
 #include "Text.h"
 #include "Utils.h"
+using namespace std;
 namespace sdds {
    Text::~Text()
    {
