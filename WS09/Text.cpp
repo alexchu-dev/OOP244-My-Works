@@ -54,9 +54,7 @@ namespace sdds {
             m_content[i] = ch;
             i++;
          }
-         if (m_content != nullptr) {
-            istr.clear();
-         }
+         if (m_content != nullptr) istr.clear();
          m_content[i] = '\0';
       }
       return istr;

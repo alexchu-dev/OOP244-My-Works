@@ -13,7 +13,7 @@
 #include "Utils.h"
 using namespace std;
 namespace sdds {
-   HtmlText::HtmlText(char* title)
+   HtmlText::HtmlText(const char* title)
    {
       delete[] m_title;
       if (title != nullptr)
@@ -31,13 +31,47 @@ namespace sdds {
    }
    HtmlText::HtmlText(const HtmlText& src)
    {
+      m_title = nullptr;
+      *this = src;
    }
    HtmlText& HtmlText::operator=(const HtmlText& src)
    {
-      // TODO: insert return statement here
+      if (this != &src) {
+         delete[] m_title;
+         if (src.m_title != nullptr) {
+            m_title = new char[ut.strlen(src.m_title) + 1];
+            ut.strcpy(m_title, src.m_title);
+         }
+         else {
+            m_title = nullptr;
+         }
+         (Text&)*this = src;
+      }
+      return *this;
    }
    std::ostream& HtmlText::write(std::ostream& ostr) const
    {
-      // TODO: insert return statement here
+      bool ms = false;
+      int index = 0;
+      ostr << "<html><head><title>";
+      m_title != nullptr ? ostr << m_title : ostr << "No Title";
+      ostr << "</title></head>\n<body>\n";
+      if (m_title != nullptr) ostr << "<h1>" << m_title << "</h1>\n";
+      while (Text::operator[](index) != '\0') {
+         char ch = Text::operator[](index);
+         if (ch == ' ') {
+            if (ms) ostr << "&nbsp;";
+               else ms && ostr << " ";
+         }
+         else {
+            if (ch == '<') ostr << "&lt;";
+            else if (ch == '>') ostr << "&gt;";
+            else if (ch == '\n') ostr << "<br />\n";
+            else Text::write(ostr);
+            ms = false;
+         }
+         index++;
+      }
+      return ostr;
    }
 }

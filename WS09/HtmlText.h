@@ -15,8 +15,9 @@ namespace sdds {
    class HtmlText : public Text {
       char* m_title = nullptr;
    public:
+      using Text::operator=;
       HtmlText() {};
-      HtmlText(char* title);
+      HtmlText(const char* title);
       ~HtmlText();
       HtmlText(const HtmlText& src);
       HtmlText& operator=(const HtmlText& src);
