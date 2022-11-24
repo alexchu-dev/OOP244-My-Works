@@ -1,0 +1,16 @@
+/******************************************************************************
+//                    OOP244NAA - WS09 @ Nov 24 2022
+//Full Name  : Alex Chu
+//Student ID#: 153954219
+//Email      : kchu30@myseneca.ca
+//
+//I have done all the coding by myself and only copied the code
+//that my professor provided to complete my workshops and assdignments.
+******************************************************************************/
+In workshop 9, I used rules of three, dynamic memory allocation, operators overloaded, derived class, virtual functions, input and output (included fstream but commands were included in main).
+
+The task was to receive an istream object passed by ifstream, then assign dynamic memory and copy the values as a character array. By handling properly with the dynamic memory allocation and deallocation, there will be no leak on the memory resource. Member functions was overrided in a derived class.
+
+I faced a few problems while the dma character array has random dummy characters in it, and noticed that I left the null terminator. It runs fine after it was being inserted properly. The other bug was on the HtmlText which it became an "fake" infinity loop because I had a line of "else Text::write(ostr)" which I thought I could reuse the code of Text.cpp but it did not work that way and it would print the whole content * numbers of character times which it print a lot more then it should. After changing to else ostr << (*this)[index] which prints only the indexed character fix the problem.
+
+In milestone 4, the tasks were straight forward. By getting more practise on inheriting the base class and overriding the base member functions and handle the special functions, it will be faster to finish this milestone.
