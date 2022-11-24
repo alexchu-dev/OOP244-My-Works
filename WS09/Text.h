@@ -18,7 +18,7 @@ namespace sdds {
       const char& operator[](int index)const;
    public:
       Text() {};
-      ~Text() {};
+      ~Text();
       Text(const Text& src);
       Text& operator=(const Text& src);
       std::istream& read(std::istream& istr = std::cin);

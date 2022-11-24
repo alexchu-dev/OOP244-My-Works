@@ -13,6 +13,10 @@ using namespace std;
 #include "Text.h"
 #include "Utils.h"
 namespace sdds {
+   Text::~Text()
+   {
+      delete[] m_content;
+   }
    Text::Text(const Text& src)
    {
       m_content = nullptr;
