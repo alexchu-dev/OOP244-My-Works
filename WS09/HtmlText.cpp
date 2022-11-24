@@ -57,21 +57,25 @@ namespace sdds {
       m_title != nullptr ? ostr << m_title : ostr << "No Title";
       ostr << "</title></head>\n<body>\n";
       if (m_title != nullptr) ostr << "<h1>" << m_title << "</h1>\n";
-      while (Text::operator[](index) != '\0') {
-         char ch = Text::operator[](index);
+      while ((*this)[index] != 0) {
+         char ch = (*this)[index];
          if (ch == ' ') {
             if (ms) ostr << "&nbsp;";
-               else ms && ostr << " ";
+            else {
+               ms = true;
+               ostr << " ";
+            }
          }
          else {
             if (ch == '<') ostr << "&lt;";
             else if (ch == '>') ostr << "&gt;";
             else if (ch == '\n') ostr << "<br />\n";
-            else Text::write(ostr);
+            else ostr << (*this)[index];
             ms = false;
          }
          index++;
       }
+      ostr << "</body>\n</html>";
       return ostr;
    }
 }
