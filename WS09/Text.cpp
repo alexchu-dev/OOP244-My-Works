@@ -42,6 +42,7 @@ namespace sdds {
       char ch;
       int i = 0;
       delete[] m_content;
+      m_content = nullptr;
       if (istr) {
          m_content = new char[ut.getFileLength(istr) + 1];
          while (istr.get(ch))
@@ -52,6 +53,7 @@ namespace sdds {
          if (m_content != nullptr) {
             istr.clear();
          }
+         m_content[i] = '\0';
       }
       return istr;
    }
@@ -70,5 +72,5 @@ namespace sdds {
    {
       return t.read(istr);
    }
-
+     
 }
