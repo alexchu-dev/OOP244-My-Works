@@ -23,8 +23,8 @@ namespace sdds {
       if (this != &src) {
          delete[] m_content;
          if (src.m_content != nullptr) {
-            m_content = new char[strlen(src.m_content) + 1];
-            strcpy(m_content, src.m_content);
+            m_content = new char[ut.strlen(src.m_content) + 1];
+            ut.strcpy(m_content, src.m_content);
          }
       }
       else
