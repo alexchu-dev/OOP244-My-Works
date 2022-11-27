@@ -22,7 +22,14 @@ namespace sdds {
    }
 
    /* Constructor - the argument is the filepath of data */
-   Parking::Parking(const char* filepath) {
+   Parking::Parking(const char* filepath, int noOfSpots) {
+      if (noOfSpots < 10 || noOfSpots > MAX_PARKING_SPOTS) 
+      {
+         m_noOfSpots = noOfSpots;
+      }
+      else {
+         setEmpty();
+      }
       setFilename(filepath);
       if (loadData()) {
             m_parkingMenu << "Park Vehicle" << "Return Vehicle" << "List Parked Vehicles" << "Find Vehicle" << "Close Parking (End of day)" << "Exit Program";
@@ -113,6 +120,7 @@ namespace sdds {
    {
       m_filename = nullptr;
       m_parkingMenu = nullptr;
+      
    }
 
    /* Deallocate the DMA objects */
