@@ -45,7 +45,7 @@ namespace sdds {
 
 
    public:
-      Parking(const char* filepath = "", int noOfSpots = NULL);
+      Parking(const char* filepath = "", int noOfSpots = 0);
       ~Parking();
       void setFilename(const char* filepath);
       int run();
