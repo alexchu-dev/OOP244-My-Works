@@ -7,6 +7,7 @@ using namespace sdds;
 void runParking();
 void Datafile(bool restore = false);
 int main() {
+   clog.setstate(ios::failbit);
    runParking();
    Datafile(true);
    return 0;

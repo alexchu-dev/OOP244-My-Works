@@ -256,7 +256,7 @@ namespace sdds {
    void Parking::findVehicle()
    {
       char temp_plate[9] ="\0";
-      int index = 0;
+      int index = -1;
       cout << "Vehicle Search" << endl;
       cout << "Enter Licence Plate Number: ";
       do {
@@ -269,9 +269,9 @@ namespace sdds {
          temp_plate[8] = '\0';
          if (cin.fail()) cout << "Invalid Licence Plate, try again: ";
       } while (cin.fail());
-      for (int i = 0; i < m_noOfSpots; i++) {
-         cout << *m_parkingSpots[i] << endl;
-         if (m_parkingSpots[i] == temp_plate) {
+      for (int i = 0; index < 0 &&  i < m_noOfSpots; i++) {
+         if(m_parkingSpots[i]) clog << *m_parkingSpots[i] << endl;
+         if (m_parkingSpots[i]  && *m_parkingSpots[i] == temp_plate) {
             index = i;
             cout << "Found :" << index << endl;
          }
