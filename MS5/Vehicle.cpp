@@ -51,15 +51,15 @@ namespace sdds {
       return *this;
    }
    //Opeartor== overloading, LHS is Vehicle object, RHS is plate char array
-   bool Vehicle::operator==(const char* plate) const
+   bool Vehicle::operator==(const char* rhs_plate) const
    {
       //Using toUpper. In case if the assigned value of the Vehicle "a" or the input plate sttring is not in upper case, two strings are to be copied to temp values first then compare.
       char temp_plate1[9] = { '\0' };
       char temp_plate2[9] = { '\0' };
-      strcpy(temp_plate1, plate);
-      toUpper(temp_plate1);
-      strcpy(temp_plate2, m_plate);
+      strcpy(temp_plate2, rhs_plate);
       toUpper(temp_plate2);
+      strcpy(temp_plate1, m_plate);
+      toUpper(temp_plate1);
       return !strcmp(temp_plate1, temp_plate2);
    }
    //Opeartor== overloading, LHS is Vehicle object, RHS is another Vehicle object

@@ -30,7 +30,7 @@ namespace sdds {
       ~Vehicle();
       Vehicle(const Vehicle& v);
       Vehicle& operator=(const Vehicle& v);
-      bool operator==(const char* plate)const;
+      bool operator==(const char* rhs_plate)const;
       bool operator==(const Vehicle& b)const;
       int getParkingSpot()const;
       void setParkingSpot(const int parkingSpot);

@@ -50,6 +50,7 @@ namespace sdds {
       void setFilename(const char* filepath);
       int run();
       int selectMenu(Menu& menu);
+      void pause();
    };
    
 
