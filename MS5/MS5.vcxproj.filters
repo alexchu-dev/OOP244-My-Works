@@ -18,9 +18,6 @@
     <ClCompile Include="Car.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -30,12 +27,6 @@
     <ClCompile Include="Parking.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ParkingAppTester.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ParkingAppTester_prof.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ReadWritable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -43,6 +34,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Vehicle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ParkingAppTester.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -16,28 +16,20 @@
 #include "Utils.h"
 using namespace std;
 namespace sdds {
-   /* Default constructor of Parking, set empty */
-   Parking::Parking() {
-      setEmpty();
-   }
-
-   /* Constructor - the argument is the filepath of data */
+   /* Constructor with 2 args */
    Parking::Parking(const char* filepath, int noOfSpots) {
-      if (noOfSpots < 10 || noOfSpots > MAX_PARKING_SPOTS) 
+      setEmpty();
+      if (filepath!=nullptr && filepath[0]!='\0' && noOfSpots >= 10 && noOfSpots <= MAX_PARKING_SPOTS)
       {
          m_noOfSpots = noOfSpots;
-      }
-      else {
-         setEmpty();
-      }
-      setFilename(filepath);
-      if (loadData()) {
+         setFilename(filepath);
+         if (loadData()) {
             m_parkingMenu << "Park Vehicle" << "Return Vehicle" << "List Parked Vehicles" << "Find Vehicle" << "Close Parking (End of day)" << "Exit Program";
             m_vehicleMenu << "Car" << "Motorcycle" << "Cancel";
-      }
-      else {
-         cout << "Error in data file" << endl;
-         setEmpty();
+         }
+         else {
+            cout << "Error in data file" << endl;
+         }
       }
    }
 
@@ -119,8 +111,11 @@ namespace sdds {
    void Parking::setEmpty()
    {
       m_filename = nullptr;
-      m_parkingMenu = nullptr;
-      
+      m_noOfSpots = 0;
+      m_noOfParked = 0;
+      for (int i = 0; i < MAX_PARKING_SPOTS; i++) {
+         m_parkingSpots[i] = nullptr;
+      }
    }
 
    /* Deallocate the DMA objects */
@@ -129,28 +124,66 @@ namespace sdds {
       delete[] m_filename;
       m_filename = nullptr;
    }
+
+   /* Check if the data can be loaded */
    bool Parking::loadData()
    {
       bool flag = false;
-      if (!isEmpty())
-      {
-         cout << "---------------------------------" << endl;
-         cout << "loading data from " << m_filename << endl;
-         cout << "---------------------------------" << endl;
-         cout << endl;
-         flag = true;
+      char ch;
+      if (!isEmpty()) {
+         ifstream fin(m_filename);
+         if (fin.is_open()) {
+            while (fin.get(ch)) {
+               fin.ignore();
+               if (ch == 'M') {
+                  delete[] m_parkingSpots[m_noOfParked];
+                  m_parkingSpots[m_noOfParked] = new Motorcycle;
+                  m_parkingSpots[m_noOfParked]->setCsv(true);
+                  m_parkingSpots[m_noOfParked]->read(fin);
+                  if (m_parkingSpots[m_noOfParked] != nullptr) {
+                     m_noOfParked++;
+                     flag = true;
+                  }
+                  else {
+                     delete[] m_parkingSpots[m_noOfParked];
+                     flag = false;
+                  }
+               }
+               else if (ch == 'C') {
+                  delete[] m_parkingSpots[m_noOfParked];
+                  m_parkingSpots[m_noOfParked] = new Car;
+                  m_parkingSpots[m_noOfParked]->setCsv(true);
+                  m_parkingSpots[m_noOfParked]->read(fin);
+                  if (m_parkingSpots[m_noOfParked]!=nullptr) {
+                     m_noOfParked++;
+                     flag = true;
+                  }
+                  else {
+                     delete[] m_parkingSpots[m_noOfParked];
+                     flag = false;
+                  }
+               }
+               else { flag = false; }
+            }
+            //end of while
+         }
+         else {
+            flag = true;
+         }
+         fin.close();
       }
-      else {
-         flag = false;
-      }
+      else { flag = true; }
       return flag;
    }
    void Parking::saveData()
    {
       if (!isEmpty()) {
-         cout << "---------------------------------" << endl;
-         cout << "Saving data into " << m_filename << endl;
-         cout << "---------------------------------" << endl;
+         ofstream fout(m_filename);
+         if (fout.is_open()) {
+            for (int i = 0; i < m_noOfSpots; i++) {
+               if (m_parkingSpots[i] != nullptr) m_parkingSpots[i]->write(fout);
+            }
+         }
       }
    }
    bool Parking::isEmpty()
@@ -160,6 +193,12 @@ namespace sdds {
    void Parking::parkingStatus()
    {
       cout << "****** Valet Parking ******" << endl;
+      cout << "***** Available spots: ";
+      cout.width(4);
+      cout.setf(ios::left);
+      cout.fill(' ');
+      cout << m_noOfSpots - m_noOfParked << " *****" << endl;
+      cout.unsetf(ios::left);
    }
    void Parking::parkVehicle()
    {

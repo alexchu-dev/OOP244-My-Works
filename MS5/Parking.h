@@ -14,8 +14,10 @@
 #define SDDS_PARKING_H_
 #define MAX_PARKING_SPOTS 100
 #include <iostream>
+#include <fstream>
 #include "Menu.h"
-#include "Vehicle.h"
+#include "Car.h"
+#include "Motorcycle.h"
 namespace sdds {
    class Parking {
       char* m_filename;
@@ -24,7 +26,6 @@ namespace sdds {
       int m_noOfParked;
       Vehicle* m_parkingSpots[MAX_PARKING_SPOTS];
       
-
       Menu m_parkingMenu{"Parking Menu, select an action:", 0};
       Menu m_vehicleMenu{"Select type of the vehicle:", 1};
       void setEmpty();
@@ -32,7 +33,6 @@ namespace sdds {
       bool loadData();
       void saveData();
       bool isEmpty();
-      
       void parkingStatus();
       void parkVehicle();
       void returnVehicle();
@@ -42,9 +42,10 @@ namespace sdds {
       bool exitParking();
       Parking(const Parking& src) = delete;
       Parking& operator=(const Parking& src) = delete;
+
+
    public:
-      Parking();
-      Parking(const char* filepath, int noOfSpots);
+      Parking(const char* filepath = "", int noOfSpots = NULL);
       ~Parking();
       void setFilename(const char* filepath);
       int run();
