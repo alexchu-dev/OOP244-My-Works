@@ -110,7 +110,7 @@ namespace sdds {
 
    void Parking::pause()
    {
-      cout << "Press <ENTER> to continue...." << endl;
+      cout << endl << "Press <ENTER> to continue....";
       cin.ignore(1000, '\n');
    }
 
@@ -136,13 +136,13 @@ namespace sdds {
    bool Parking::loadData()
    {
       bool flag = false;
-      char ch;
+      char type;
       if (!isEmpty()) {
          ifstream fin(m_filename);
          if (fin.is_open()) {
-            while (fin.get(ch)) {
+            while (fin.get(type)) {
                fin.ignore();
-               if (ch == 'M' || ch == 'm') {
+               if (type == 'M' || type == 'm') {
                   delete[] m_parkingSpots[m_noOfParked];
                   m_parkingSpots[m_noOfParked] = new Motorcycle;
                   m_parkingSpots[m_noOfParked]->setCsv(true);
@@ -156,7 +156,7 @@ namespace sdds {
                      flag = false;
                   }
                }
-               else if (ch == 'C' || ch == 'c') {
+               else if (type == 'C' || type == 'c') {
                   delete[] m_parkingSpots[m_noOfParked];
                   m_parkingSpots[m_noOfParked] = new Car;
                   m_parkingSpots[m_noOfParked]->setCsv(true);
@@ -209,30 +209,45 @@ namespace sdds {
    }
    void Parking::parkVehicle()
    {
-      int selection = 0;
-      m_vehicleMenu.display();
-      selection = selectMenu(m_vehicleMenu);
-      switch (selection) {
+      if (m_noOfParked == m_noOfSpots) {
+         cout << endl << "Parking is full" << endl;
+         pause();
+      }
+      else {
+         int selection = 0;
+         int index = findEmptySpot();
+         Vehicle* tmpV;
+         m_vehicleMenu.display();
+         selection = selectMenu(m_vehicleMenu);
+         switch (selection) {
          case 1:
-            cout << "---------------------------------" << endl;
-            cout << "Parking Car" << endl;
-            cout << "---------------------------------" << endl;
-            cout << endl;
+            tmpV = new Car;
+            tmpV->setCsv(false);
+            tmpV->read(cin);
+            m_parkingSpots[index] = tmpV;
+            m_parkingSpots[index]->setParkingSpot(index+1);
+            m_noOfParked++;
+            cout << endl << "Parking Ticket" << endl;
+            tmpV->write(cout);
+            pause();
             break;
          case 2:
-            cout << "---------------------------------" << endl;
-            cout << "Parking Motorcycle" << endl;
-            cout << "---------------------------------" << endl;
-            cout << endl;
+            tmpV = new Motorcycle;
+            tmpV->setCsv(false);
+            tmpV->read(cin);
+            m_parkingSpots[index] = tmpV;
+            m_parkingSpots[index]->setParkingSpot(index + 1);
+            m_noOfParked++;
+            cout << endl << "Parking Ticket" << endl;
+            tmpV->write(cout);
+            pause();
             break;
          case 3:
-            cout << "---------------------------------" << endl;
-            cout << "Cancelled parking" << endl;
-            cout << "---------------------------------" << endl;
-            cout << endl;
+            cout << "Parking Cancelled";
+            pause();
             break;
+         }
       }
-
    }
    void Parking::returnVehicle()
    {
@@ -249,6 +264,7 @@ namespace sdds {
             m_parkingSpots[i]->setCsv(false);
             m_parkingSpots[i]->write(cout);
             cout << "-------------------------------" << endl;
+            m_parkingSpots[i]->setCsv(true);
          }
       }
       pause();
@@ -264,18 +280,34 @@ namespace sdds {
             cin.clear();
             cin.ignore(1000, '\n');
          }
-         
          cin.getline(temp_plate, 9, '\n');
-         temp_plate[8] = '\0';
          if (cin.fail()) cout << "Invalid Licence Plate, try again: ";
       } while (cin.fail());
       for (int i = 0; index < 0 &&  i < m_noOfSpots; i++) {
-         if(m_parkingSpots[i]) clog << *m_parkingSpots[i] << endl;
          if (m_parkingSpots[i]  && *m_parkingSpots[i] == temp_plate) {
             index = i;
-            cout << "Found :" << index << endl;
          }
       }
+      cout << endl;
+      if (index == -1) {
+         cout << "License plate " << temp_plate << " Not found" << endl;
+      }
+      else {
+         m_parkingSpots[index]->setCsv(false);
+         cout << "Vehicle found:" << endl << *m_parkingSpots[index];
+         m_parkingSpots[index]->setCsv(true);
+      }
+      pause();
+   }
+   int Parking::findEmptySpot()
+   {
+      int index = -1;
+      for (int i = 0; index < 0 && i < m_noOfSpots; i++) {
+         if (!m_parkingSpots[i]) {
+            index = i;
+         }
+      }
+      return index;
    }
    bool Parking::closeParking()
    {

@@ -64,31 +64,15 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="m51-correct-output.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="m52-correct-output.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="m53-correct-output.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="m54-correct-output.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="m55-correct-output.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="m56-correct-output.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
+    <Text Include="m51-correct-output.txt" />
+    <Text Include="m52-correct-output.txt" />
+    <Text Include="m53-correct-output.txt" />
+    <Text Include="m54-correct-output.txt" />
+    <Text Include="m55-correct-output.txt" />
+    <Text Include="m56-correct-output.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ParkingData.csv.bak">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="ParkingData.csv">
-      <Filter>Resource Files</Filter>
-    </None>
+    <None Include="ParkingData.csv" />
+    <None Include="ParkingData.csv.bak" />
   </ItemGroup>
 </Project>
