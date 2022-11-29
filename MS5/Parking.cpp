@@ -364,29 +364,4 @@ namespace sdds {
       cout << "Are you sure? (Y)es/(N)o: ";
       return yesno();
    }
-
-   /* Restore data just in case the csv becomes empty and loading error */
-   void Parking::Datafile(bool restore) {
-      char ch;
-      ifstream file("ParkingData.csv");
-      if (restore) {
-         cout << "Restore data file to original values? (y)es/(n)o: ";
-         file.close();
-         if (cin.get() == 'y') {
-            char ch;
-            file.open("ParkingData.csv.bak");
-            ofstream fout("ParkingData.csv");
-            while (file) {
-               ch = file.get();
-               if (file) fout.put(ch);
-            }
-            file.close();
-            fout.close();
-            cout << "****Data file restored to orginal values********" << endl << endl;
-         }
-         else {
-            cout << "Restoration aborted!" << endl;
-         }
-      }
-   }
 }

@@ -53,7 +53,6 @@ namespace sdds {
       int run();
       int selectMenu(Menu& menu);
       void pause();
-      void Datafile(bool restore = false);
    };
 }
 
