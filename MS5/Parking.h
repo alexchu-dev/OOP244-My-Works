@@ -22,8 +22,8 @@ namespace sdds {
    class Parking {
       char* m_filename;
       /*New Members Added Below*/
-      int m_noOfSpots;
-      int m_noOfParked;
+      int m_totalSpots = 0;
+      int m_totalOccupied = 0;
       Vehicle* m_parkingSpots[MAX_PARKING_SPOTS];
       
       Menu m_parkingMenu{"Parking Menu, select an action:", 0};
@@ -38,6 +38,7 @@ namespace sdds {
       void returnVehicle();
       void listParkedVehicle();
       void findVehicle();
+      int findVehicleLogic();
       int findEmptySpot();
       bool closeParking();
       bool exitParking();
@@ -52,9 +53,8 @@ namespace sdds {
       int run();
       int selectMenu(Menu& menu);
       void pause();
+      void Datafile(bool restore = false);
    };
-   
-
 }
 
 
