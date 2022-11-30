@@ -284,7 +284,7 @@ namespace sdds {
       }
       cout << endl;
       if (index == -1) {
-         cout << "License plate " << temp_plate << " Not found" << endl;
+         cout << "License plate " << toUpper(temp_plate) << " Not found" << endl;
       }
       else {
          m_parkingSpots[index]->setCsv(false);
