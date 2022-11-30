@@ -18,7 +18,7 @@ namespace sdds {
       bool m_csv;
    public:
       ReadWritable();
-      virtual ~ReadWritable() {};
+      virtual ~ReadWritable() = default;
       bool isCsv()const;
       void setCsv(bool value);
       virtual std::istream& read(std::istream& istr = std::cin) = 0;

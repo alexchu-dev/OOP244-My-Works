@@ -125,7 +125,7 @@ namespace sdds {
       }
    }
 
-   /* Deallocate the DMA objects */
+   /* Deallocate the DMA objects */ 
    void Parking::deallocate()
    {
       delete[] m_filename;
@@ -138,18 +138,17 @@ namespace sdds {
       bool flag = false;
       char type;
       int index = -1;
-      Vehicle* temp;
       if (!isEmpty()) {
          ifstream fin(m_filename);
          if (fin.is_open()) {
             while (fin.get(type)) {
                fin.ignore();
                if (type == 'M' || type == 'm') {
-                  temp = new Motorcycle;
+                  Motorcycle* temp = new Motorcycle;
                   temp->setCsv(true);
                   temp->read(fin);
                   index = temp->getParkingSpot()-1;
-                  delete[] m_parkingSpots[index];
+                  delete m_parkingSpots[index];
                   m_parkingSpots[index] = new Motorcycle;
                   m_parkingSpots[index] = temp;
                   if (m_parkingSpots[index] != nullptr) {
@@ -157,16 +156,17 @@ namespace sdds {
                      flag = true;
                   }
                   else {
-                     delete[] m_parkingSpots[m_totalOccupied];
+                     delete m_parkingSpots[index];
                      flag = false;
                   }
+                  delete temp;
                }
                else if (type == 'C' || type == 'c') {
-                  temp = new Car;
+                  Car* temp = new Car;
                   temp->setCsv(true);
                   temp->read(fin);
                   index = temp->getParkingSpot()-1;
-                  delete[] m_parkingSpots[index];
+                  delete m_parkingSpots[index];
                   m_parkingSpots[index] = new Car;
                   m_parkingSpots[index] = temp;
                   if (m_parkingSpots[index] != nullptr) {
@@ -174,9 +174,10 @@ namespace sdds {
                      flag = true;
                   }
                   else {
-                     delete[] m_parkingSpots[m_totalOccupied];
+                     delete m_parkingSpots[index];
                      flag = false;
                   }
+                  delete temp;
                }
                else { flag = false; }
             }
@@ -238,6 +239,7 @@ namespace sdds {
             cout << endl << "Parking Ticket" << endl;
             m_parkingSpots[index]->write(cout);
             m_parkingSpots[index]->setCsv(true);
+            delete tmpV;
             pause();
             break;
          case 2:
@@ -251,6 +253,7 @@ namespace sdds {
             m_parkingSpots[index]->write(cout);
             m_parkingSpots[index]->setCsv(true);
             pause();
+            delete tmpV;
             break;
          case 3:
             cout << "Parking Cancelled";
@@ -262,11 +265,31 @@ namespace sdds {
    void Parking::returnVehicle()
    {
       cout << "Returning Vehicle" << endl;
-      int index = findVehicleLogic();
-      if (index >= 0) {
+      char temp_plate[9];
+      int index = -1;
+      cout << "Enter Licence Plate Number: ";
+      do {
+         if (cin.fail()) {
+            cin.clear();
+            cin.ignore(1000, '\n');
+         }
+         cin.getline(temp_plate, 9, '\n');
+         if (cin.fail()) cout << "Invalid Licence Plate, try again: ";
+      } while (cin.fail());
+      for (int i = 0; index < 0 && i < m_totalSpots; i++) {
+         if (m_parkingSpots[i] != nullptr
+            && *m_parkingSpots[i] == temp_plate) {
+            index = i;
+         }
+      }
+      cout << endl;
+      if (index == -1) {
+         cout << "License plate " << temp_plate << " Not found" << endl;
+      }
+      else {
          m_parkingSpots[index]->setCsv(false);
          cout << "Returning:" << endl << *m_parkingSpots[index];
-         delete[] m_parkingSpots[index];
+         delete m_parkingSpots[index];
          m_parkingSpots[index] = nullptr;
       }
       m_totalOccupied--;
@@ -288,16 +311,6 @@ namespace sdds {
    void Parking::findVehicle()
    {
       cout << "Vehicle Search" << endl;
-      int index = findVehicleLogic();
-      if (index >= 0) {
-         m_parkingSpots[index]->setCsv(false);
-         cout << "Vehicle found:" << endl << *m_parkingSpots[index];
-         m_parkingSpots[index]->setCsv(true);
-      }
-      pause();
-   }
-   int Parking::findVehicleLogic()
-   {
       char temp_plate[9];
       int index = -1;
       cout << "Enter Licence Plate Number: ";
@@ -310,7 +323,8 @@ namespace sdds {
          if (cin.fail()) cout << "Invalid Licence Plate, try again: ";
       } while (cin.fail());
       for (int i = 0; index < 0 && i < m_totalSpots; i++) {
-         if (m_parkingSpots[i] && *m_parkingSpots[i] == temp_plate) {
+         if (m_parkingSpots[i] != nullptr
+            && *m_parkingSpots[i] == temp_plate) {
             index = i;
          }
       }
@@ -318,7 +332,12 @@ namespace sdds {
       if (index == -1) {
          cout << "License plate " << temp_plate << " Not found" << endl;
       }
-      return index;
+      else {
+         m_parkingSpots[index]->setCsv(false);
+         cout << "Vehicle found:" << endl << *m_parkingSpots[index];
+         m_parkingSpots[index]->setCsv(true);
+      }
+      pause();
    }
    int Parking::findEmptySpot()
    {
@@ -350,7 +369,7 @@ namespace sdds {
                   cout << endl << "Towing request" << endl;
                   cout << "*********************" << endl;
                   m_parkingSpots[i]->write(cout) << endl;
-                  delete[] m_parkingSpots[i];
+                  delete m_parkingSpots[i];
                   m_parkingSpots[i] = nullptr;
                }
             }

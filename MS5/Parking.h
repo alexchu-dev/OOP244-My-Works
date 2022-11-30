@@ -38,7 +38,6 @@ namespace sdds {
       void returnVehicle();
       void listParkedVehicle();
       void findVehicle();
-      int findVehicleLogic();
       int findEmptySpot();
       bool closeParking();
       bool exitParking();

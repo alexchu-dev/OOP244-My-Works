@@ -29,6 +29,7 @@ namespace sdds {
    Vehicle::~Vehicle()
    {
       delete[] m_makeModel;
+      m_makeModel = nullptr;
    }
    //Copy Constructor of Vehicle class, it relies on the Copy Assignment Operator
    Vehicle::Vehicle(const Vehicle& v)
@@ -102,6 +103,7 @@ namespace sdds {
    {
       //allocate new dynamic memory if needed
       delete[] m_makeModel;
+      m_makeModel = nullptr;
       if (makeModel!=nullptr) {
          m_makeModel = new char[strlen(makeModel) + 1];
          strcpy(m_makeModel, makeModel);
