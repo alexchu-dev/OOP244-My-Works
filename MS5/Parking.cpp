@@ -129,7 +129,7 @@ namespace sdds {
    void Parking::deallocate()
    {
       delete[] m_filename;
-      delete m_parkingSpots;
+      delete[] m_parkingSpots;
       //m_filename = nullptr;
    }
 
