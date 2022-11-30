@@ -159,7 +159,6 @@ namespace sdds {
                      delete m_parkingSpots[index];
                      flag = false;
                   }
-                  delete temp;
                }
                else if (type == 'C' || type == 'c') {
                   Car* temp = new Car;
@@ -177,7 +176,6 @@ namespace sdds {
                      delete m_parkingSpots[index];
                      flag = false;
                   }
-                  delete temp;
                }
                else { flag = false; }
             }
