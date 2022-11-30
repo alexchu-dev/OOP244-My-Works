@@ -12,7 +12,7 @@
 ***********************************************************************/
 #ifndef SDDS_PARKING_H_
 #define SDDS_PARKING_H_
-#define MAX_PARKING_SPOTS 10
+#define MAX_PARKING_SPOTS 100
 #include <iostream>
 #include <fstream>
 #include "Menu.h"
