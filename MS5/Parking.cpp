@@ -152,7 +152,6 @@ namespace sdds {
                   temp->read(fin);
                   index = temp->getParkingSpot()-1;
                   delete m_parkingSpots[index];
-                  m_parkingSpots[index] = new Motorcycle;
                   m_parkingSpots[index] = temp;
                   if (m_parkingSpots[index] != nullptr) {
                      m_totalOccupied++;
@@ -172,7 +171,6 @@ namespace sdds {
                   temp->read(fin);
                   index = temp->getParkingSpot()-1;
                   delete m_parkingSpots[index];
-                  m_parkingSpots[index] = new Car;
                   m_parkingSpots[index] = temp;
                   if (m_parkingSpots[index] != nullptr) {
                      m_totalOccupied++;
