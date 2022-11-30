@@ -158,6 +158,7 @@ namespace sdds {
                   }
                   else {
                      delete m_parkingSpots[index];
+                     m_parkingSpots[index] = nullptr;
                      flag = false;
                   }
                   temp = nullptr;
@@ -176,6 +177,7 @@ namespace sdds {
                   }
                   else {
                      delete m_parkingSpots[index];
+                     m_parkingSpots[index] = nullptr;
                      flag = false;
                   }
                   temp = nullptr;
