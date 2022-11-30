@@ -164,6 +164,7 @@ namespace sdds {
                      flag = false;
                   }
                   temp = nullptr;
+                  delete temp;
                }
                else if (type == 'C' || type == 'c') {
                   Car* temp = new Car;
@@ -183,6 +184,7 @@ namespace sdds {
                      flag = false;
                   }
                   temp = nullptr;
+                  delete temp;
                }
                else { flag = false; }
             }
