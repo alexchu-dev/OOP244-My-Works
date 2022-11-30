@@ -129,7 +129,8 @@ namespace sdds {
    void Parking::deallocate()
    {
       delete[] m_filename;
-      m_filename = nullptr;
+      delete m_parkingSpots;
+      //m_filename = nullptr;
    }
 
    /* Check if the data can be loaded */
@@ -159,6 +160,7 @@ namespace sdds {
                      delete m_parkingSpots[index];
                      flag = false;
                   }
+                  temp = nullptr;
                }
                else if (type == 'C' || type == 'c') {
                   Car* temp = new Car;
@@ -176,6 +178,7 @@ namespace sdds {
                      delete m_parkingSpots[index];
                      flag = false;
                   }
+                  temp = nullptr;
                }
                else { flag = false; }
             }
@@ -223,35 +226,30 @@ namespace sdds {
       else {
          int selection = 0;
          int index = findEmptySpot();
-         Vehicle* tmpV;
          m_vehicleMenu.display();
          selection = selectMenu(m_vehicleMenu);
          switch (selection) {
          case 1:
-            tmpV = new Car;
-            tmpV->setCsv(false);
-            tmpV->read(cin);
-            m_parkingSpots[index] = tmpV;
+            m_parkingSpots[index] = new Car;
+            m_parkingSpots[index]->setCsv(false);
+            m_parkingSpots[index]->read(cin);
             m_parkingSpots[index]->setParkingSpot(index+1);
             m_totalOccupied++;
             cout << endl << "Parking Ticket" << endl;
             m_parkingSpots[index]->write(cout);
             m_parkingSpots[index]->setCsv(true);
-            delete tmpV;
             pause();
             break;
          case 2:
-            tmpV = new Motorcycle;
-            tmpV->setCsv(false);
-            tmpV->read(cin);
-            m_parkingSpots[index] = tmpV;
+            m_parkingSpots[index] = new Motorcycle;
+            m_parkingSpots[index]->setCsv(false);
+            m_parkingSpots[index]->read(cin);
             m_parkingSpots[index]->setParkingSpot(index + 1);
             m_totalOccupied++;
             cout << endl << "Parking Ticket" << endl;
             m_parkingSpots[index]->write(cout);
             m_parkingSpots[index]->setCsv(true);
             pause();
-            delete tmpV;
             break;
          case 3:
             cout << "Parking Cancelled";
