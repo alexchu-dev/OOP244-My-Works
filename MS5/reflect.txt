@@ -1,0 +1,16 @@
+/******************************************************************************
+//                    OOP244NAA - MS5 @ Nov 30 2022
+//Full Name  : Alex Chu
+//Student ID#: 153954219
+//Email      : kchu30@myseneca.ca
+//
+//I have done all the coding by myself and only copied the code
+//that my professor provided to complete my workshops and assdignments.
+******************************************************************************/
+For the milestone 5, I spent less time on it compare to most of the milestone 1-4 because most of the frameworks were done already in past month. It took me on and off around 1.5 days to finish the coding part. However, the most challenging part was to debug because there were memory leak for sure and to delete dynamic memory for array of pointers was more complicated and confusing. I have been deleting all the things I have used "new" and as an experiment I had tons of errors coming out in the valgrind compiler saying invalid read or write etc due to I deleted certain memory block which were going to be used. The loadData() function took most of the time to write as well to debug. After that, I have figured out my deallocation did not include the array of pointer which caused the memory leak as well.
+
+I have used Fardad's Utils (toUpper) to do the uppercase transfer.
+
+During my coding and debugging, there were some situations the compiler aborted and without asking me to restore the data, then the data will become blank and cause issues. I have written a few lines just it case it doesn't load, it will prompt that the data is missing and direct the user to restore the data and reopen the programme.
+
+I have learnt more on debugging to find out and fix the errors one by one using valgrind.
