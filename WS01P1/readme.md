@@ -407,68 +407,6 @@ and follow the instructions.
 > **??Important:** Please note that a successful submission does not guarantee full credit for this workshop. If the professor is not satisfied with your implementation, your professor may ask you to resubmit. Re-submissions will attract a penalty
 
 
-# DIY (50%)
-
-
-## cstring Module
-Create a module called cstring (in files: **cstring.cpp** and **cstring.h**) that You will be using instead of the C string library throughout the semester. 
-
-> **:warning:Important:** You are not allowed to use any C or CPP library functions in this module 
- 
-## Functions to implement
-```C++
-       // Copies the srouce character string into the destination
-   void strCpy(char* des, const char* src);
-      // Copies the source character string into the destination upto "len"
-      // characters. The destination will be null terminated only if the number
-      // of the characters copied is less than "len"
-   void strnCpy(char* des, const char* src, int len);
-     // Compares two C-strings 
-     // returns 0 i thare the same
-     // return > 0 if s1 > s2
-     // return < 0 if s1 < s2
-   int strCmp(const char* s1, const char* s2);
-     // returns 0 i thare the same
-     // return > 0 if s1 > s2
-     // return < 0 if s1 < s2
-   int strnCmp(const char* s1, const char* s2, int len);
-     // returns the lenght of the C-string in characters
-   int strLen(const char* s);
-     // returns the address of first occurance of "str2" in "str1"
-     // returns nullptr if no match is found
-   const char* strStr(const char* str1, const char* str2);
-     // Concantinates "src" C-string to the end of "des"
-   void strCat(char* des, const char* src);
-```
-
-## Tester Program
-
-<a href="DIY/cstringTester.cpp" target="_blank">Professors tester</a>
-
-## DIY Execution example
-```Text
-abcdefghijklmnopqrstuvwxyz
-@@cdefghijklmnopqrstuvwxyz
-@@@defghijklmnopqrstuvwxyz
-@@@
-1
-0
-1
-0
-26
-jklmnopqrstuvwxyz
-Not found
-John Doe
-
-```
-
-Files to submit:  
-```Text
-cstring.h
-cstring.cpp
-cstringTester.cpp
-```
-
 ## Reflection
 
 Study your final solutions for each deliverable of the workshop, reread the related parts of the course notes, and make sure that you have understood the concepts covered by this workshop.  **This should take no less than 30 minutes of your time and the result is suggested to be at least 150 words in length.**
